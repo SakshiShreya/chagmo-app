@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.app.demo.ad.AccountRepository;
 import com.app.demo.ad.PostRepository;
+import com.app.demo.components.services.PostService;
 import com.app.demo.models.Account;
 import com.app.demo.models.Post;
 import com.app.demo.models.PostForm;
@@ -22,28 +23,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class PostController {
 
     @Autowired
-    private AccountRepository accountRepo;
-
-    @Autowired
-    private PostRepository postRepo;
+    private PostService postService;
 
     @GetMapping("/posts")
-    public Collection<Post> getAll(){
-        return postRepo.findAll();
+    public Collection<Post> findAll(){
+        return postService.getAll();
     }
 
     @GetMapping("/post/{id}")
-    public Optional<Post> get(@PathVariable int id){
-        return postRepo.findById(Long.valueOf(id));
+    public Optional<Post> findById(@PathVariable int id){
+        return postService.getById(id);
     }
 
     @PostMapping("/addPost")
-    public Post addPost(@RequestBody PostForm postForm){
-        Account acc = accountRepo.getOne(Long.valueOf(postForm.getAccountId()));
-        Post post = new Post();
-        post.setMessage(postForm.getMessage());
-        post.setAccount(acc);
-        return postRepo.save(post);
+    public Post save(@RequestBody PostForm postForm){
+        return postService.addPost(postForm);
     }
 
 }

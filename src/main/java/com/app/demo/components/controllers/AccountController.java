@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.app.demo.ad.AccountRepository;
 import com.app.demo.ad.PostRepository;
+import com.app.demo.components.services.AccountService;
 import com.app.demo.models.Account;
 import com.app.demo.models.AccountForm;
 import com.app.demo.models.FullName;
@@ -22,38 +23,26 @@ import org.springframework.web.bind.annotation.RestController;
 public class AccountController {
 
     @Autowired
-    private AccountRepository accountRepo;
-
-    @Autowired
-    private PostRepository postRepo;
+    private AccountService accountService;
 
     @GetMapping("/accounts")
-    public Collection<Account> getAll() {
-        return accountRepo.findAll();
+    public Collection<Account> findAll(){
+        return accountService.getAll();
     }
 
     @GetMapping("/account/{id}")
-    public Optional<Account> getOne(@PathVariable int id) {
-        Optional<Account> acc = accountRepo.findById(Long.valueOf(id));
-        return acc;
+    public Optional<Account> findById(@PathVariable int id){
+        return accountService.getById(id);
     }
 
     @GetMapping("/accountGmail/{gmail}")
-    public Optional<Account> getByGmail(@PathVariable String gmail) {
-        return accountRepo.findByGmail(gmail);
+    public Optional<Account> findByGmail(@PathVariable String gmail){
+        return accountService.getByGmail(gmail);
     }
 
     @PutMapping("/addAccount")
-    public Account addAccount(@RequestBody AccountForm accountForm) {
-        FullName fullName = new FullName();
-        fullName.setFirstName(accountForm.getFirst_name());
-        fullName.setLastName(accountForm.getLast_name());
-        Account account = new Account();
-        account.setGmail(accountForm.getGmail());
-        account.setFullName(fullName);
-        account.setPassword(accountForm.getPassword());
-        account = accountRepo.save(account);
-        return account;
+    public Account save(@RequestBody AccountForm accountForm){
+        return accountService.addAccount(accountForm);
     }
 
 }
