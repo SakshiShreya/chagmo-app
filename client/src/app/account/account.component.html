@@ -1,0 +1,14 @@
+<nav class="navbar navbar-light bg-light">
+  <a (click)="moveToHome()" >
+    <span>Home</span>
+  </a>
+  <a (click)="moveToAccount()">
+    <span>Account</span>
+  </a>
+  <p class="sm" >
+    Logged in with <b>{{ loggedInAccountInfo?.gmail}}</b> account
+  </p>
+  <button class="btn btn-info m-2" (click)="logOut()" >Log out</button>
+</nav>
+
+<router-outlet></router-outlet>

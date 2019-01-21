@@ -1,0 +1,15 @@
+<div class="text-center m-2" >
+  <h1>Log in</h1>
+</div>
+
+<form #accountForm="ngForm" (ngSubmit)="logIn(accountForm.value)">
+    <div class="form-groups" >
+        <label for="gmail" class="m-2">Gmail</label>
+        <input id="gmail" ngModel name="gmail" class="form-control" />
+    </div>
+    <div class="form-groups" >
+        <label for="password" class="m-2">Password</label>
+        <input id="password" ngModel name="password" class="form-control" />
+    </div>
+    <button class="btn btn-info m-2">Log in</button>
+</form>
