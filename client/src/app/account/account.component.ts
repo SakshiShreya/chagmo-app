@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountService } from '../account-service/account.service';
 import { LocalStorageService } from '../local-storage/local-storage.service';
+import { PostService } from '../post-service/post.service';
 
 @Component({
   selector: 'app-account',
@@ -28,7 +29,7 @@ export class AccountComponent implements OnInit {
 
   /**
    * I have this two methods here becaouse we may 
-   * add some conditions and it not directly from html file
+   * add some conditions and it is not directly from html file
    */
   moveToHome(){
     this.router.navigate(['dashboard']);

@@ -13,7 +13,7 @@ public class Account {
     @Column(name="id", nullable=false, unique=true)
     private Long id;
 
-    @Column(name="gmail")
+    @Column(name="gmail", nullable=false, unique=true)
     private String gmail;
 
     @Column(name="full_name")

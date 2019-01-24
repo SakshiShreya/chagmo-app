@@ -1,6 +1,10 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
@@ -14,6 +18,7 @@ import { NoAccountComponent } from './no-account/no-account.component';
 import { LocalStorageService } from './local-storage/local-storage.service';
 import { UserInterfaceComponent } from './user-interface/user-interface.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PostService } from './post-service/post.service';
 
 /**
  *  App routers
@@ -61,11 +66,15 @@ const appRouters: Routes = [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(appRouters),
+    HttpClientModule,
     FormsModule,
-    HttpClientModule
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatInputModule
   ],
   providers: [
     AccountService,
+    PostService,
     LocalStorageService
   ],
   bootstrap: [AppComponent]

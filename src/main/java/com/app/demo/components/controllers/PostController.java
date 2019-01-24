@@ -35,8 +35,15 @@ public class PostController {
         return postService.getById(id);
     }
 
+    @GetMapping("/posts/{id}")
+    public Collection<Post> findByAccountId(@PathVariable int id){
+        return postService.getByAccountId(id);
+    }
+
     @PostMapping("/addPost")
     public Post save(@RequestBody PostForm postForm){
+        System.out.println("Hello world");
+        System.out.println(postForm.toString());
         return postService.addPost(postForm);
     }
 

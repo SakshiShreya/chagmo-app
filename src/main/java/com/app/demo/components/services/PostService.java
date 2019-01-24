@@ -29,6 +29,10 @@ public class PostService{
         return postRepo.findById(Long.valueOf(id));
     }
 
+    public Collection<Post> getByAccountId(int id){
+        return postRepo.findByAccountId(Long.valueOf(id));
+    }
+
     public Post addPost(PostForm postForm){
         Account acc = accountRepo.getOne(Long.valueOf(postForm.getAccountId()));
         Post post = new Post();
