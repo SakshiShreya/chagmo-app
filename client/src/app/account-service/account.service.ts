@@ -12,8 +12,8 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root"
 })
 export class AccountService {
-  // private API = "https://spring-boot-t-app.herokuapp.com";
-  private API = "http://localhost:8080";
+  private API = "https://spring-boot-t-app.herokuapp.com";
+  // private API = "http://localhost:8080";
 
   constructor(private http: HttpClient) {}
 
