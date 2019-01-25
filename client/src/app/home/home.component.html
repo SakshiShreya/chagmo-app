@@ -1,13 +1,22 @@
-<div class="text-center m-2" >
-  <h1>Log in</h1>
+<div class="content">
+  <div class="center-align logo">OUR_LOGO</div>
+  <div class="center-align"><h1>Log in</h1></div>
+  <div class="main-container">
+      <div class="left-side"><!--Don't touch it. This div is for the background--></div>
+      <div class="right-side">
+        <form #accountForm="ngForm" (ngSubmit)="logIn(accountForm.value)">
+          <div class="form-groups">
+          <label for="gmail">Gmail</label>
+          <input type="email" id="gmail" ngModel name="gmail" class="form-control" />
+          </div>
+          <div class="form-groups">
+          <label for="password">Password</label>
+          <input type="password" id="password" ngModel name="password" class="form-control" />
+          </div>
+          <button class="submit">Log in</button>
+          <p class="small">Don't have an account? <a href="/sign-up">Sign Up</a></p>
+      </form>
+      </div>
+  </div>
+  
 </div>
-
-<form #accountForm="ngForm" (ngSubmit)="logIn(accountForm.value)">
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Gmail" id="gmail" ngModel name="gmail" >
-    </mat-form-field><br>
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Password" id="password" ngModel name="password" >
-    </mat-form-field><br>
-    <button mat-raised-button color="primary" class="m-2" >Log in</button>
-</form>
