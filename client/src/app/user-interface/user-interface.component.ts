@@ -14,7 +14,9 @@ import { FullName } from '../models/FullName';
 export class UserInterfaceComponent implements OnInit {
 
   private viewedAccountInfo: any;
-  private posts: Array<Post> = new Array();
+  private posts: Array<Post>;
+  private fullName: FullName;
+  private postAccountInfo: PostAccountInfo;
 
   constructor(private route: ActivatedRoute,
               private accountService: AccountService,
@@ -29,9 +31,9 @@ export class UserInterfaceComponent implements OnInit {
       param => {
         this.accountService.getByGmail(param['gmail']).subscribe(
           accountInfo => {
-            console.log(accountInfo);
             this.viewedAccountInfo = accountInfo;
-            this.getPosts(this.viewedAccountInfo.id);
+            this.storeDataInformation(this.viewedAccountInfo);
+            this.getPosts();
           }
         )
       },
@@ -41,16 +43,19 @@ export class UserInterfaceComponent implements OnInit {
     )
   }
 
-  getPosts(id: number){
-    this.postService.getByAccountId(id).subscribe(
+  storeDataInformation(accInfo: any){
+    this.fullName = new FullName(accInfo.fullName.firstName, accInfo.fullName.firstName);
+    this.postAccountInfo = new PostAccountInfo(accInfo.id, this.fullName);
+  }
+
+  getPosts(){
+    this.postService.getByAccountId(this.postAccountInfo.Id).subscribe(
       res => {
         let postsOfAnyType: any = res;
+        this.posts = new Array<Post>();
         for(let post of postsOfAnyType){
-          let fullName = new FullName(post.account.fullName.firstName, post.account.fullName.lastName);
-          let accInfo = new PostAccountInfo(post.account.id, fullName);
-          this.posts.push(new Post(post.message, accInfo));
+          this.posts.push(new Post(post.message, this.postAccountInfo));
         }
-        console.log(this.posts);
       },
       err => console.log(err)
     )

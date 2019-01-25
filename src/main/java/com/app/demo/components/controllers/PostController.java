@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.app.demo.ad.AccountRepository;
 import com.app.demo.ad.PostRepository;
+import com.app.demo.components.services.AccountService;
 import com.app.demo.components.services.PostService;
 import com.app.demo.models.Account;
 import com.app.demo.models.Post;
@@ -21,6 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins="http://localhost:4200")
 public class PostController {
+
+    @Autowired
+    private AccountService accountService;
 
     @Autowired
     private PostService postService;
@@ -42,8 +46,7 @@ public class PostController {
 
     @PostMapping("/addPost")
     public Post save(@RequestBody PostForm postForm){
-        System.out.println("Hello world");
-        System.out.println(postForm.toString());
+        System.out.println(postForm);
         return postService.addPost(postForm);
     }
 

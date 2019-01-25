@@ -12,13 +12,13 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root"
 })
 export class AccountService {
-  private API = "https://spring-boot-t-app.herokuapp.com";
-  // private API = "http://localhost:8080";
+  // private API = "https://spring-boot-t-app.herokuapp.com";
+  private API = "http://localhost:8080";
 
   constructor(private http: HttpClient) {}
 
   /**
-   *  Note that mothods can be called however you want
+   *  Note that methods can be called however you want
    */
 
   /**
@@ -46,8 +46,11 @@ export class AccountService {
    *  Save or update given account info
    */
   save(accountForm: any) {
-    console.log(accountForm);
-    return this.http.post(this.API + "/addAccount", accountForm);
+    return this.http.post(this.API + "/addAccount", accountForm).subscribe();
+  }
+
+  delete(id: number) {
+    return this.http.delete(this.API + "/deleteAccount/" + id);
   }
 
   /**

@@ -34,11 +34,14 @@ public class PostService{
     }
 
     public Post addPost(PostForm postForm){
-        Account acc = accountRepo.getOne(Long.valueOf(postForm.getAccountId()));
-        Post post = new Post();
-        post.setMessage(postForm.getMessage());
-        post.setAccount(acc);
-        return postRepo.save(post);
+        Account acc = accountRepo.findById(Long.valueOf(postForm.getAccountId())).orElse(null);
+        if(acc != null) {
+            Post post = new Post();
+            post.setMessage(postForm.getMessage());
+            post.setAccount(acc);
+            return postRepo.save(post);
+        }
+        return null;
     }
 
 }

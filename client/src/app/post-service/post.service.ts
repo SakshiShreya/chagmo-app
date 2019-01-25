@@ -23,7 +23,7 @@ export class PostService {
   }
 
   save(postForm: any){
-    return this.http.post(this.API+"/addPost", postForm);
+    return this.http.post(this.API+"/addPost", postForm).subscribe();
   }
 
 }

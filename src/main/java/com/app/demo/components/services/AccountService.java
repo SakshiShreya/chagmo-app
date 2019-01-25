@@ -41,4 +41,13 @@ public class AccountService{
         return account;
     }
 
+    public boolean remove(int id){
+        Account account = accountRepo.findById(Long.valueOf(id)).orElse(null);
+        if(account != null){
+            accountRepo.delete(account);
+            return true;
+        }
+        return false;
+    }
+
 }
