@@ -46,7 +46,7 @@ export class AccountService {
    *  Save or update given account info
    */
   save(accountForm: any) {
-    return this.http.post(this.API + "/addAccount", accountForm).subscribe();
+    return this.http.post(this.API + "/addAccount", accountForm);
   }
 
   delete(id: number) {

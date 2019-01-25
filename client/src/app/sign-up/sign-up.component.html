@@ -1,27 +1,33 @@
-<div class="text-center m-2" >
-  <h1>Sing up</h1>
-</div>
+<div class="content">
+  <div class="text-center m-2"><h1>Sign up</h1></div>
+  <div class="main-container">
+    <div class="left-side">This will have a yellow or fun image</div>
+    <div class="right-side">
+      <form #accountForm="ngForm" (ngSubmit)="addAccount(accountForm.value)">
+        <div class="form-groups">
+          <label for="gmail" class="m-2">Gmail</label>
+          <input id="gmail" ngModel name="gmail" class="form-control" />
+        </div>
+        <div class="form-groups">
+          <label for="first_name" class="m-2">First Name</label>
+          <input id="first_name" ngModel name="first_name" class="form-control" />
+        </div>
+        <div class="form-groups">
+          <label for="last_name" class="m-2">Last Name</label>
+          <input id="last_name" ngModel name="last_name" class="form-control" />
+        </div>
+        <div class="form-groups">
+          <label for="password" class="m-2">Password</label>
+          <input id="password" ngModel name="password" class="form-control" />
+        </div>
+        <div class="form-groups">
+          <label for="re-password" class="m-2">Confirm passoword</label>
+          <input id="re-password" ngModel name="re-password" class="form-control" />
+        </div>
+        <button class="btn submit m-2">Sign up</button>
+        <p>Already have an account? <a href="/">Log In</a></p>
+      </form>
+    </div>
+  </div>
 
-<form #accountForm="ngForm" (ngSubmit)="addAccount(accountForm.value)">
-    <div class="form-groups" >
-        <label for="gmail" class="m-2">Gmail</label>
-        <input id="gmail" ngModel name="gmail" class="form-control" />
-    </div>
-    <div class="form-groups" >
-        <label for="first_name" class="m-2">First Name</label>
-        <input id="first_name" ngModel name="first_name" class="form-control" />
-    </div>
-    <div class="form-groups" >
-        <label for="last_name" class="m-2">Last Name</label>
-        <input id="last_name" ngModel name="last_name" class="form-control" />
-    </div>
-    <div class="form-groups" >
-        <label for="password" class="m-2">Password</label>
-        <input id="password" ngModel name="password" class="form-control" />
-    </div>
-    <div class="form-groups" >
-        <label for="re-password" class="m-2">Confirm passoword</label>
-        <input id="re-password" ngModel name="re-password" class="form-control" />
-    </div>
-    <button class="btn btn-info m-2">Sign up</button>
-</form>
+</div>

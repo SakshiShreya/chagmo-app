@@ -10,7 +10,9 @@ export class SignUpComponent {
   constructor(private accountService: AccountService) {}
 
   addAccount(accountForm: any) {
-    this.accountService.save(accountForm);
+    console.log(accountForm);
+    this.accountService
+      .save(accountForm)
+      .subscribe(res => console.log(res), err => console.log(err));
   }
-  
 }

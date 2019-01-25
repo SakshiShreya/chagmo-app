@@ -1,0 +1,33 @@
+.content {
+  margin: 0 10%;
+}
+
+.main-container {
+  display: flex;
+}
+
+.left-side {
+  width: 150%;
+}
+
+.right-side {
+  width: 100%;
+}
+
+input {
+  outline: none;
+}
+
+input:focus {
+  border: 2px solid #fbc02d;
+}
+
+.submit {
+  background: #fbc02d;
+}
+
+@media(max-width: 720px) {
+  .main-container {
+    display: block;
+  }
+}
