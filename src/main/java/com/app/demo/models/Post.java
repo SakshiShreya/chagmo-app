@@ -20,6 +20,9 @@ public class Post{
     private String message;
 
     @ManyToOne
+    private Subject subject;
+
+    @ManyToOne
     private Account account;
 
     public Long getId() {
@@ -44,6 +47,14 @@ public class Post{
     
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 
     @Override

@@ -4,6 +4,7 @@ public class PostForm{
 
     private String message;
     private int accountId;
+    private int subjectId;
 
     public String getMessage() {
         return message;
@@ -21,9 +22,24 @@ public class PostForm{
         this.accountId = accountId;
     }
 
-    @Override
-    public String toString() {
-        return "PostForm = [message: "+this.message+", account_id: "+this.accountId+"]";
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
     }
 
+    public int getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(int subjectId) {
+        this.subjectId = subjectId;
+    }
+
+    @Override
+    public String toString() {
+        return "PostForm{" +
+                "message='" + message + '\'' +
+                ", accountId=" + accountId +
+                ", subjectId=" + subjectId +
+                '}';
+    }
 }

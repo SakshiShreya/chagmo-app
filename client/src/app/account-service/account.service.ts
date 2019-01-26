@@ -4,7 +4,7 @@ import { HttpClient } from "@angular/common/http";
 /**
  * 
  * This is the service that gets information from backend.
- * Basicly I have another server running at //localhost:8080 port, 
+ * Basically I have another server running at //localhost:8080 port,
  * and I get information from there.
  */
 
@@ -12,8 +12,9 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root"
 })
 export class AccountService {
-  private API = "https://spring-boot-t-app.herokuapp.com";
-  // private API = "http://localhost:8080";
+
+  // private API = "https://spring-boot-t-app.herokuapp.com";
+  private API = "http://localhost:8080";
 
   constructor(private http: HttpClient) {}
 
@@ -53,8 +54,8 @@ export class AccountService {
     return this.http.delete(this.API + "/deleteAccount/" + id);
   }
 
-  /**
-   *  For now I do not have here save only and delete, 
-   *  but it really easy to add as others.
-   */
+  update(accountForm: any){
+    // ...
+  }
+
 }
