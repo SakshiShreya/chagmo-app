@@ -26,7 +26,7 @@ public class DemoApplication {
 		accForm.setFirst_name("Tigran");
 		accForm.setLast_name("Fahradyan");
 		accForm.setGmail("tigran.fahradyan01@gmail.com");
-		accForm.setPassword("1111");
+		accForm.setPassword("1");
 
 		accountService.addAccount(accForm);
 

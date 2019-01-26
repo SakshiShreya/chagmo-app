@@ -31,7 +31,7 @@ export class AccountComponent implements OnInit {
    * I have this two methods here becaouse we may 
    * add some conditions and it is not directly from html file
    */
-  moveToHome(){
+  moveToDashboard(){
     this.router.navigate(['dashboard']);
   }
 

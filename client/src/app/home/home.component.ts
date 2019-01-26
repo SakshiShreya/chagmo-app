@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     this.accountService.getByGmail(this.loginForm.gmail).subscribe(
       res => {
         if(this.loginForm.gmail == res.gmail){
-          if(this.loginForm.password == this.loginForm.password){
+          if(this.loginForm.password == res.password){
             if(this.localStorage.setloggedAccountGmail(this.loginForm.gmail)){
               this.router.navigate(["dashboard"]);
             }else {

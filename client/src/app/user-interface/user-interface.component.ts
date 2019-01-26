@@ -59,10 +59,9 @@ export class UserInterfaceComponent implements OnInit {
 
   getPosts(){
     this.postService.getByAccountId(this.postAccountInfo.Id).subscribe(
-      res => {
-        let postsOfAnyType: any = res;
+      (res: any) => {
         this.posts = new Array<Post>();
-        for(let post of postsOfAnyType){
+        for(let post of res){
           this.posts.push(new Post(post.message, this.postAccountInfo));
         }
       },
