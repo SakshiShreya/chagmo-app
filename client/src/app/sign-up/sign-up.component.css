@@ -1,3 +1,12 @@
+label {
+  display: block;
+}
+
+.logo {
+  margin: 2rem;
+  font-size: 2rem;
+}
+
 .content {
   margin: 0 10%;
 }
@@ -16,14 +25,38 @@
 
 input {
   outline: none;
+  width: 100%;
+  padding: 0.5rem 0;
+  border: transparent;
+  border-bottom: 2px solid lightgray;
+  margin: 0.2rem 0 0.5rem;
+  transition: 200ms;
+}
+
+input:hover {
+  border-bottom: 2px solid gray;
 }
 
 input:focus {
-  border: 2px solid #fbc02d;
+  border-bottom: 2px solid #fbc02d;
 }
 
 .submit {
   background: #fbc02d;
+  border: 1px solid #F9A825;
+  padding: 0.5rem;
+  width: 100%;
+  margin: 0.5rem 0 0.2rem;
+  box-shadow: 2px 2px 5px lightgray;
+  transition: 200ms;
+}
+
+.submit:focus, .submit:hover {
+  box-shadow: 2px 2px 5px gray;
+}
+
+.small {
+  font-size: 0.8rem;
 }
 
 @media(max-width: 720px) {
