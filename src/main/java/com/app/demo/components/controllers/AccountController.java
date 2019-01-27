@@ -3,12 +3,8 @@ package com.app.demo.components.controllers;
 import java.util.Collection;
 import java.util.Optional;
 
-import com.app.demo.ad.AccountRepository;
-import com.app.demo.ad.PostRepository;
 import com.app.demo.components.services.AccountService;
 import com.app.demo.models.Account;
-import com.app.demo.models.AccountForm;
-import com.app.demo.models.FullName;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,8 +32,8 @@ public class AccountController {
     }
 
     @PostMapping("/addAccount")
-    public Account save(@RequestBody AccountForm accountForm){
-        return accountService.addAccount(accountForm);
+    public Account save(@RequestBody Account account){
+        return accountService.addAccount(account);
     }
 
     @DeleteMapping("/deleteAccount/{id}")

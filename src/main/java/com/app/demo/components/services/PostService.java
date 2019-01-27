@@ -38,17 +38,8 @@ public class PostService{
         return postRepo.findByAccountId(Long.valueOf(id));
     }
 
-    public Post addPost(PostForm postForm){
-        Account acc = accountRepo.findById(Long.valueOf(postForm.getAccountId())).orElse(null);
-        Subject sub = subjectRepo.findById(Long.valueOf(postForm.getSubjectId())).orElse(null);
-        if(acc != null && sub != null) {
-            Post post = new Post();
-            post.setMessage(postForm.getMessage());
-            post.setAccount(acc);
-            post.setSubject(sub);
-            return postRepo.save(post);
-        }
-        return null;
+    public Post addPost(Post post){
+        return postRepo.save(post);
     }
 
 }

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 /**
  * 
@@ -7,6 +7,8 @@ import { HttpClient } from "@angular/common/http";
  * Basically I have another server running at //localhost:8080 port,
  * and I get information from there.
  */
+
+const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
 
 @Injectable({
   providedIn: "root"
@@ -46,8 +48,9 @@ export class AccountService {
   /**
    *  Save or update given account info
    */
-  save(accountForm: any) {
-    return this.http.post(this.API + "/addAccount", accountForm);
+  save(account: Account) {
+    return this.http.post(this.API + "/addAccount", JSON.stringify(account),
+      {headers: headers});
   }
 
   delete(id: number) {

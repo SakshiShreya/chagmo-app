@@ -5,7 +5,7 @@ import { PostService } from '../post-service/post.service';
 import { Post } from '../models/post-models/Post';
 import { PostAccountInfo } from '../models/post-models/PostAccountInfo';
 import { FullName } from '../models/FullName';
-import {AccountInfo} from "../models/post-models/AccountInfo";
+import {AccountInfo} from "../models/account-models/AccountInfo";
 
 @Component({
   selector: 'app-user-interface',
@@ -37,8 +37,9 @@ export class UserInterfaceComponent implements OnInit {
               accountInfo.fullName.lastName);
             let accInfo = new AccountInfo(
               accountInfo.id,
-              fullName,
-              accountInfo.gmail
+              accountInfo.gmail,
+              accountInfo.username,
+              fullName
             );
             this.viewedAccountInfo = accInfo;
             this.storeDataInformation(this.viewedAccountInfo);
@@ -58,7 +59,7 @@ export class UserInterfaceComponent implements OnInit {
   }
 
   getPosts(){
-    this.postService.getByAccountId(this.postAccountInfo.Id).subscribe(
+    this.postService.getByAccountId(this.postAccountInfo.getId()).subscribe(
       (res: any) => {
         this.posts = new Array<Post>();
         for(let post of res){

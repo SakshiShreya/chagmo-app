@@ -45,9 +45,8 @@ public class PostController {
     }
 
     @PostMapping("/addPost")
-    public Post save(@RequestBody PostForm postForm){
-        System.out.println(postForm);
-        return postService.addPost(postForm);
+    public Post save(@RequestBody Post post){
+        return postService.addPost(post);
     }
 
 }

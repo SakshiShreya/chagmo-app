@@ -2,7 +2,6 @@ package com.app.demo;
 
 import com.app.demo.components.services.AccountService;
 import com.app.demo.models.Account;
-import com.app.demo.models.AccountForm;
 import com.app.demo.models.FullName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -22,13 +21,16 @@ public class DemoApplication {
 	@Bean
 	public void onStart(){
 
-		AccountForm accForm = new AccountForm();
-		accForm.setFirst_name("Tigran");
-		accForm.setLast_name("Fahradyan");
-		accForm.setGmail("tigran.fahradyan01@gmail.com");
-		accForm.setPassword("1");
+		FullName fullName = new FullName();
+		fullName.setFirstName("Tigran");
+		fullName.setLastName("Fahradyan");
 
-		accountService.addAccount(accForm);
+		Account acc = new Account();
+		acc.setGmail("tigran.fahradyan");
+		acc.setFullName(fullName);
+		acc.setPassword("1111");
+
+		accountService.addAccount(acc);
 
 	}
 
