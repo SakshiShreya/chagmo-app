@@ -1,4 +1,4 @@
-package com.app.demo.models;
+package com.app.demo.models.accountModels;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +15,9 @@ public class Account {
 
     @Column(name="gmail", nullable=false, unique=true)
     private String gmail;
+
+    @Column(name="username", nullable=false, unique=true)
+    private String username;
 
     @Column(name="full_name")
     private FullName fullName;
@@ -39,6 +42,14 @@ public class Account {
 
     public void setGmail(String gmail) {
         this.gmail = gmail;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public FullName getFullName() {

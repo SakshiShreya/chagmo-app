@@ -4,11 +4,11 @@ export class PostAccountInfo {
 
     constructor(private id: number, private fullName: FullName){ }
 
-    public get Id() : number {
+    public getId() : number {
         return this.id;
     }
 
-    public get FullName() : FullName {
+    public getFullName() : FullName {
         return this.fullName;
     }
 

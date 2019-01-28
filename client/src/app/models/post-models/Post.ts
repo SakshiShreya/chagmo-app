@@ -1,15 +1,27 @@
 import { PostAccountInfo } from './PostAccountInfo';
+import {Subject} from "../Subject";
 
 export class Post {
 
-    constructor(private message: string, private postAccountInfo: PostAccountInfo){ }
-    
-    public get Message() : string {
-        return this.message;
-    }
+  constructor(private content: string,
+              private subjects: Array<Subject>,
+              private account: PostAccountInfo){
+  }
 
-    public get PostAccountInfo() : PostAccountInfo {
-        return this.postAccountInfo;
-    }    
+  getMessage() : string {
+    return this.content;
+  }
+
+  getSubjects(): Array<Subject> {
+    return this.subjects;
+  }
+
+  setSubjects(value: Array<Subject>) {
+    this.subjects = value;
+  }
+
+  getPostAccountInfo() : PostAccountInfo {
+    return this.account;
+  }
 
 }

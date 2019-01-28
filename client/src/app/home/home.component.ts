@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { AccountService } from "../account-service/account.service";
+import { AccountService } from "../services/account-service/account.service";
 import { Router } from '@angular/router';
-import { LocalStorageService } from '../local-storage/local-storage.service';
-import { TouchSequence } from 'selenium-webdriver';
+import { LocalStorageService } from '../services/local-storage/local-storage.service';
+import {LoginForm} from "../models/form-models/LoginForm";
 
 @Component({
   selector: "app-home",
@@ -11,32 +11,38 @@ import { TouchSequence } from 'selenium-webdriver';
 })
 export class HomeComponent implements OnInit {
 
+  private loginForm: LoginForm;
+
   constructor(private accountService: AccountService,
               private router: Router,
               private localStorage: LocalStorageService) {}
-
-  logIn(accountInfo) {
-    this.accountService.getByGmail(accountInfo.gmail).subscribe(
-      res => {
-        if(accountInfo.gmail == res.gmail){
-          if(accountInfo.password == accountInfo.password){
-            if(this.localStorage.setloggedAccountGmail(accountInfo.gmail)){
-              this.router.navigate(["dashboard"]);
-            }else {
-              console.log("Sorry something went wrong");
-            }
-          }
-        }else {
-          console.log("Failed to log in");
-        }
-      }
-    )
-  }
 
   ngOnInit(){
     if(this.localStorage.loggedIn()){
       this.router.navigate(['dashboard']);
     }
+  }
+
+  logIn(loginInfo) {
+    this.localStorage.removeAll();
+    this.loginForm = new LoginForm(loginInfo.gmail, loginInfo.password);
+    this.accountService.getByGmail(this.loginForm.gmail).subscribe(
+      res => {
+        console.log(res.username);
+        if(this.loginForm.gmail == res.gmail){
+          if(this.loginForm.password == res.password){
+            if(this.localStorage.setloggedAccountUsername(res.username)){
+              this.router.navigate(["dashboard"]);
+            }else {
+              console.log("Sorry, something went wrong");
+            }
+          }
+        }else {
+          console.log("Failed to log in");
+        }
+      },
+      err => console.log(err)
+    )
   }
 
 }

@@ -4,9 +4,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 import com.app.demo.ad.AccountRepository;
-import com.app.demo.models.Account;
-import com.app.demo.models.AccountForm;
-import com.app.demo.models.FullName;
+import com.app.demo.models.accountModels.Account;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,16 +27,12 @@ public class AccountService{
         return accountRepo.findByGmail(gmail);
     }
 
-    public Account addAccount(AccountForm accountForm) {
-        FullName fullName = new FullName();
-        fullName.setFirstName(accountForm.getFirst_name());
-        fullName.setLastName(accountForm.getLast_name());
-        Account account = new Account();
-        account.setGmail(accountForm.getGmail());
-        account.setFullName(fullName);
-        account.setPassword(accountForm.getPassword());
-        account = accountRepo.save(account);
-        return account;
+    public Optional<Account> getByUsername(String username){
+        return accountRepo.findByUsername(username);
+    }
+
+    public Account addAccount(Account account) {
+        return accountRepo.save(account);
     }
 
     public boolean remove(int id){

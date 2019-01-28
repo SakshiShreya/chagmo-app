@@ -3,13 +3,9 @@ package com.app.demo.components.controllers;
 import java.util.Collection;
 import java.util.Optional;
 
-import com.app.demo.ad.AccountRepository;
-import com.app.demo.ad.PostRepository;
 import com.app.demo.components.services.AccountService;
 import com.app.demo.components.services.PostService;
-import com.app.demo.models.Account;
-import com.app.demo.models.Post;
-import com.app.demo.models.PostForm;
+import com.app.demo.models.postModels.Post;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -45,9 +41,8 @@ public class PostController {
     }
 
     @PostMapping("/addPost")
-    public Post save(@RequestBody PostForm postForm){
-        System.out.println(postForm);
-        return postService.addPost(postForm);
+    public Post save(@RequestBody Post post){
+        return postService.addPost(post);
     }
 
 }

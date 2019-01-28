@@ -1,4 +1,4 @@
-package com.app.demo.models;
+package com.app.demo.models.accountModels;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

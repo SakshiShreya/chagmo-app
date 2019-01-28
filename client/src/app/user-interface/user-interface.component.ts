@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AccountService } from '../account-service/account.service';
-import { PostService } from '../post-service/post.service';
+import { AccountService } from '../services/account-service/account.service';
+import { PostService } from '../services/post-service/post.service';
 import { Post } from '../models/post-models/Post';
 import { PostAccountInfo } from '../models/post-models/PostAccountInfo';
 import { FullName } from '../models/FullName';
+import {AccountInfo} from "../models/account-models/AccountInfo";
 
 @Component({
   selector: 'app-user-interface',
@@ -13,27 +14,27 @@ import { FullName } from '../models/FullName';
 })
 export class UserInterfaceComponent implements OnInit {
 
-  private viewedAccountInfo: any;
+  private viewedAccountInfo: AccountInfo;
   private posts: Array<Post>;
-  private fullName: FullName;
-  private postAccountInfo: PostAccountInfo;
+  private viewedAccountFullName: FullName;
+  private viewedAccountPostAccountInfo: PostAccountInfo;
 
   constructor(private route: ActivatedRoute,
               private accountService: AccountService,
               private postService: PostService) { }
 
   ngOnInit() {
-    this.getViewedAccountInfo();
+    this.setVewiedAccountInformations();
   }
 
-  getViewedAccountInfo(){
+  setVewiedAccountInformations(){
     this.route.params.subscribe(
       param => {
-        this.accountService.getByGmail(param['gmail']).subscribe(
+        this.accountService.getByUsername(param['username']).subscribe(
           accountInfo => {
-            this.viewedAccountInfo = accountInfo;
-            this.storeDataInformation(this.viewedAccountInfo);
-            this.getPosts();
+            this.setViewedAccountFullName(accountInfo.fullName);
+            this.setViewedAccountInfo(accountInfo);
+            this.setViewedPostAccountInfo(accountInfo);
           }
         )
       },
@@ -43,22 +44,27 @@ export class UserInterfaceComponent implements OnInit {
     )
   }
 
-  storeDataInformation(accInfo: any){
-    this.fullName = new FullName(accInfo.fullName.firstName, accInfo.fullName.firstName);
-    this.postAccountInfo = new PostAccountInfo(accInfo.id, this.fullName);
+  setViewedAccountFullName(fullName: any){
+    this.viewedAccountFullName = new FullName(
+      fullName.firstName,
+      fullName.lastName
+    );
   }
 
-  getPosts(){
-    this.postService.getByAccountId(this.postAccountInfo.Id).subscribe(
-      res => {
-        let postsOfAnyType: any = res;
-        this.posts = new Array<Post>();
-        for(let post of postsOfAnyType){
-          this.posts.push(new Post(post.message, this.postAccountInfo));
-        }
-      },
-      err => console.log(err)
-    )
+  setViewedAccountInfo(accInfo: any){
+    this.viewedAccountInfo = new AccountInfo(
+      accInfo.id,
+      accInfo.gmail,
+      accInfo.username,
+      this.viewedAccountFullName
+    );
+  }
+
+  setViewedPostAccountInfo(accInfo: any){
+    this.viewedAccountPostAccountInfo = new PostAccountInfo(
+      accInfo.id,
+      this.viewedAccountFullName
+    );
   }
 
 }
