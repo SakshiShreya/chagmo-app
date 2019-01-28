@@ -33,7 +33,6 @@ public class AccountController {
 
     @GetMapping("/accountUsername/{username}")
     public Optional<Account> findByUsername(@PathVariable String username){
-        System.out.println(username);
         return accountService.getByUsername(username);
     }
 

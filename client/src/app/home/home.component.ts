@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AccountService } from "../services/account-service/account.service";
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../services/local-storage/local-storage.service';
-import {LoginForm} from "../models/account-models/LoginForm";
+import {LoginForm} from "../models/form-models/LoginForm";
 
 @Component({
   selector: "app-home",

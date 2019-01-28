@@ -5,6 +5,7 @@ import com.app.demo.models.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -28,6 +29,20 @@ public class SubjectService {
 
     public Subject addSubject(Subject subject){
         return subjectRepo.save(subject);
+    }
+
+    public Collection<Subject> getByNames(String subjNames){
+        Collection<Subject> subjects = new ArrayList<Subject>();
+        for(String subjectName: subjNames.split(" ")){
+            Subject sub = subjectRepo.findByName(subjectName).orElse(null);
+            if(sub == null){
+                Subject newSubject = new Subject();
+                newSubject.setName(subjectName);
+                sub = addSubject(newSubject);
+            }
+            subjects.add(sub);
+        }
+        return subjects;
     }
 
     public boolean remove(int id){

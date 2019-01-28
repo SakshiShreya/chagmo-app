@@ -30,6 +30,11 @@ public class SubjectController {
         return subjectService.getByName(name);
     }
 
+    @GetMapping("/subjectsByNames/{subjectString}")
+    public Collection<Subject> findByNames(@PathVariable String subjectString){
+        return subjectService.getByNames(subjectString);
+    }
+
     @PostMapping("/addSubject")
     public Subject save(@RequestBody Subject subject){
         return subjectService.addSubject(subject);

@@ -24,6 +24,10 @@ export class SubjectService extends CoreService {
     return this.http.get(CoreService.getAPI() + "/subjectName/" + name);
   }
 
+  getByNames(names: string){
+    return this.http.get(CoreService.getAPI() + "/subjectsByNames/" + names);
+  }
+
   save(subject: Subject){
     return this.http.post(CoreService.getAPI() + "/addSubject", JSON.stringify(subject)).subscribe();
   }

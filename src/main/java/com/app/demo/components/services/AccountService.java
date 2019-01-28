@@ -28,8 +28,6 @@ public class AccountService{
     }
 
     public Optional<Account> getByUsername(String username){
-        Optional<Account> acc = accountRepo.findByUsername(username);
-        System.out.println(acc.toString());
         return accountRepo.findByUsername(username);
     }
 

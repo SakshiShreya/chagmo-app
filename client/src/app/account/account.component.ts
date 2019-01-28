@@ -4,12 +4,13 @@ import { AccountService } from '../services/account-service/account.service';
 import { LocalStorageService } from '../services/local-storage/local-storage.service';
 import { AccountInfo } from "../models/account-models/AccountInfo";
 import { Account } from "../models/account-models/Account";
-import {FullName} from "../models/FullName";
-import {Post} from "../models/post-models/Post";
-import {PostAccountInfo} from "../models/post-models/PostAccountInfo";
+import { FullName } from "../models/FullName";
+import { Post } from "../models/post-models/Post";
+import { PostAccountInfo } from "../models/post-models/PostAccountInfo";
+import { PostService } from "../services/post-service/post.service";
+import { SubjectService } from "../services/subject-service/subject.service";
+import {PostForm} from "../models/form-models/PostForm";
 import {Subject} from "../models/Subject";
-import {PostService} from "../services/post-service/post.service";
-import {SubjectService} from "../services/subject-service/subject.service";
 
 @Component({
   selector: 'app-account',
@@ -24,7 +25,9 @@ export class AccountComponent implements OnInit {
   private loggedInAccount: Account;
   private loggedInAccountInfo: AccountInfo;
 
-  private postWindowOpened = false;
+  private postForm: PostForm;
+
+  public postWindowOpened = false;
 
   constructor(private router: Router,
               private accountService: AccountService,
@@ -72,26 +75,29 @@ export class AccountComponent implements OnInit {
   }
 
   addPost(postForm: any){
-    /**
-     * I have not found a good solution for posting.
-     * This will be certainly changed, because "subjects" ar null
-     *  */
-    let post = new Post(
+    this.postForm = new PostForm(
       postForm.content,
-      null, // subjects
-      this.loggedInAccount
+      postForm.subjects
     );
-    this.postService.save(post).subscribe(
-      res => console.log(res),
-      err => console.log(err)
-    );
-    this.closePostWindow();
+    this.subjectService.getByNames(this.postForm.getSubjectNames()).subscribe(
+      (subjects: any) => {
+        let subs = new Array<Subject>();
+        for(let sub of subjects){
+          subs.push(new Subject(sub.id, sub.name));
+        }
+        let post = new Post(
+          postForm.content,
+          subs,
+          this.loggedInAccount
+        );
+        this.postService.save(post).subscribe(
+          res => console.log(res),
+          err => console.log(err)
+        );
+      }
+    )
   }
 
-  /**
-   * I have this two methods here becaouse we may 
-   * add some conditions and it is not directly from html file
-   */
   moveToDashboard(){
     this.router.navigate(['dashboard']);
   }
