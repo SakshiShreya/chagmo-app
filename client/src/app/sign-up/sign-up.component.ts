@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { AccountService } from '../account-service/account.service';
+import { AccountService } from '../services/account-service/account.service';
 import {FullName} from "../models/FullName";
 import {Account} from "../models/account-models/Account";
 

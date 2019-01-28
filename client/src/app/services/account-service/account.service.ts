@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Account} from "../models/account-models/Account";
+import {Account} from "../../models/account-models/Account";
+import {CoreService} from "../CoreService";
 
 /**
  * 
@@ -9,17 +10,14 @@ import {Account} from "../models/account-models/Account";
  * and I get information from there.
  */
 
-const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
-
 @Injectable({
   providedIn: "root"
 })
-export class AccountService {
+export class AccountService extends CoreService {
 
-  // private API = "https://spring-boot-t-app.herokuapp.com";
-  private API = "http://localhost:8080";
-
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    super();
+  }
 
   /**
    *  Note that methods can be called however you want
@@ -29,37 +27,37 @@ export class AccountService {
    *  Get all the accounts
    */
   getAll() {
-    return this.http.get(this.API + "/accounts");
+    return this.http.get(CoreService.getAPI() + "/accounts");
   }
 
   /**
    *  Get an account using its id
    */
   getById(id: number): any {
-    return this.http.get(this.API + "/account/" + id);
+    return this.http.get(CoreService.getAPI() + "/account/" + id);
   }
 
   /**
    *  Get an account using its gmail address
    */
   getByGmail(gmail: string): any {
-    return this.http.get(this.API + "/accountGmail/" + gmail);
+    return this.http.get(CoreService.getAPI() + "/accountGmail/" + gmail);
   }
 
   getByUsername(username: string): any {
-    return this.http.get(this.API + "/accountUsername/" + username);
+    return this.http.get(CoreService.getAPI() + "/accountUsername/" + username);
   }
 
   /**
    *  Save or update given account info
    */
   save(account: Account) {
-    return this.http.post(this.API + "/addAccount", JSON.stringify(account),
-      {headers: headers});
+    return this.http.post(CoreService.getAPI() + "/addAccount", JSON.stringify(account),
+      {headers: CoreService.getHttpHeader()});
   }
 
   delete(id: number) {
-    return this.http.delete(this.API + "/deleteAccount/" + id);
+    return this.http.delete(CoreService.getAPI() + "/deleteAccount/" + id);
   }
 
   update(accountForm: any){

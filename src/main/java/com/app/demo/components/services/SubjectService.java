@@ -22,6 +22,10 @@ public class SubjectService {
         return subjectRepo.findById(Long.valueOf(id));
     }
 
+    public Optional<Subject> getByName(String name){
+        return subjectRepo.findByName(name);
+    }
+
     public Subject addSubject(Subject subject){
         return subjectRepo.save(subject);
     }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AccountService } from '../account-service/account.service';
-import { PostService } from '../post-service/post.service';
+import { AccountService } from '../services/account-service/account.service';
+import { PostService } from '../services/post-service/post.service';
 import { Post } from '../models/post-models/Post';
 import { PostAccountInfo } from '../models/post-models/PostAccountInfo';
 import { FullName } from '../models/FullName';

@@ -1,13 +1,22 @@
 export class Subject {
 
-  constructor(private _name: string){ }
+  constructor(private id: number, private name: string){ }
 
-  get name(): string {
-    return this._name;
+
+  getId(): number {
+    return this.id;
   }
 
-  set name(value: string) {
-    this._name = value;
+  setId(value: number) {
+    this.id = value;
+  }
+
+  getName(): string {
+    return this.name;
+  }
+
+  setName(value: string) {
+    this.name = value;
   }
 
 }

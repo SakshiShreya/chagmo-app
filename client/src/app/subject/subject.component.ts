@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Subject} from "../models/Subject";
-import {SubjectService} from "../subject-service/subject.service";
+import {SubjectService} from "../services/subject-service/subject.service";
 
 @Component({
   selector: 'app-subject',
@@ -17,7 +17,6 @@ export class SubjectComponent implements OnInit {
     this.subjectService.getAll().subscribe(
       (allSubjects: any) => {
         this.subjects = allSubjects;
-        console.log(this.subjects);
       }
     )
   }
