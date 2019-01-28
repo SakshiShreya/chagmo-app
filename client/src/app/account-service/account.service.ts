@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Account} from "../models/account-models/Account";
 
 /**
  * 
@@ -43,6 +44,10 @@ export class AccountService {
    */
   getByGmail(gmail: string): any {
     return this.http.get(this.API + "/accountGmail/" + gmail);
+  }
+
+  getByUsername(username: string): any {
+    return this.http.get(this.API + "/accountUsername/" + username);
   }
 
   /**

@@ -20,7 +20,7 @@ import { UserInterfaceComponent } from './user-interface/user-interface.componen
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PostService } from './post-service/post.service';
 import { SubjectComponent } from './subject/subject.component';
-import {SubjectService} from "./subject-service/subject.service";
+import { SubjectService } from "./subject-service/subject.service";
 
 /**
  *  App routers
@@ -51,7 +51,7 @@ const appRouters: Routes = [
         component: SubjectComponent
       },
       {
-        path: ":gmail",
+        path: ":username",
         component: UserInterfaceComponent
       }
     ]

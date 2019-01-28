@@ -7,21 +7,24 @@ import { AccountService } from '../account-service/account.service';
 export class LocalStorageService {
 
   private localStorage = window.localStorage;
-  private loggedAccount: boolean = false;
-  private STORAGEACCOUNTNAME = "ACCOUNTNAME";
-  private loggedAccountGmail: string;
+  private STORAGEACCOUNTNAME = "ACCOUNUSERTNAME";
+  private loggedAccountUsername: string;
   private maxLenght = 1;
 
   constructor(private accountService: AccountService) { }
 
-  getLoggedAccountGmail(){
-    return this.localStorage.getItem(this.STORAGEACCOUNTNAME);
+  getLoggedAccountUsername(){
+    this.loggedAccountUsername = this.localStorage.getItem(this.STORAGEACCOUNTNAME);
+    return this.loggedAccountUsername;
   }
 
-  setloggedAccountGmail(accountGmail: any){
-    this.localStorage.setItem(this.STORAGEACCOUNTNAME, accountGmail);
-    this.loggedAccountGmail = this.getLoggedAccountGmail();
-    return this.loggedIn();
+  setloggedAccountUsername(accountUsername: string): boolean {
+    if (this.localStorage.length === 0) {
+      this.localStorage.setItem(this.STORAGEACCOUNTNAME, accountUsername);
+      return this.loggedIn();
+    }
+    console.log("more than one account in local storage");
+    return false;
   }
 
   loggedIn(): boolean {
@@ -29,6 +32,10 @@ export class LocalStorageService {
       return true;
     }
     return false;
+  }
+
+  getLenght(){
+    return this.localStorage.length;
   }
 
   removeAll(){

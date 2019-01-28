@@ -1,8 +1,10 @@
 package com.app.demo;
 
+import com.app.demo.ad.SubjectRepository;
 import com.app.demo.components.services.AccountService;
-import com.app.demo.models.Account;
-import com.app.demo.models.FullName;
+import com.app.demo.models.Subject;
+import com.app.demo.models.accountModels.Account;
+import com.app.demo.models.accountModels.FullName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,6 +15,9 @@ public class DemoApplication {
 
 	@Autowired
 	private AccountService accountService;
+
+	@Autowired
+	private SubjectRepository subjectRepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -27,10 +32,24 @@ public class DemoApplication {
 
 		Account acc = new Account();
 		acc.setGmail("tigran.fahradyan");
+		acc.setUsername("tigran7");
 		acc.setFullName(fullName);
-		acc.setPassword("1111");
+		acc.setPassword("1");
 
 		accountService.addAccount(acc);
+
+		Subject book = new Subject();
+		book.setName("Books");
+
+		Subject music = new Subject();
+		music.setName("Music");
+
+		Subject art = new Subject();
+		art.setName("Art");
+
+		subjectRepo.save(book);
+		subjectRepo.save(music);
+		subjectRepo.save(art);
 
 	}
 

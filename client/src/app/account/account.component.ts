@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountService } from '../account-service/account.service';
 import { LocalStorageService } from '../local-storage/local-storage.service';
-import { PostService } from '../post-service/post.service';
+import { AccountInfo } from "../models/account-models/AccountInfo";
+import {FullName} from "../models/FullName";
 
 @Component({
   selector: 'app-account',
@@ -11,20 +12,40 @@ import { PostService } from '../post-service/post.service';
 })
 export class AccountComponent implements OnInit {
 
-  private loggedInAccount: boolean  = false;
-  private loggedInAccountInfo: any;
+  private loggedInAccount: boolean = false;
+
+  private loggedInAccountInfo: AccountInfo;
 
   constructor(private router: Router,
               private accountService: AccountService,
               private localStorage: LocalStorageService) { }
 
   ngOnInit() {
-    if(this.loggedIn()){
+    if(this.localStorage.loggedIn()){
       console.log("You are logged in");
-      this.setLoggedAccountInfo(this.localStorage.getLoggedAccountGmail());
+      this.setLoggedAccountInfo();
     }else {
       this.router.navigate(['/no-account']);
     }
+  }
+
+  setLoggedAccountInfo(){
+    this.accountService.getByUsername(this.localStorage.getLoggedAccountUsername()).subscribe(
+      accountInfo => {
+        let fullName = new FullName(
+          accountInfo.fullName.firstName,
+          accountInfo.fullName.lastName
+        );
+        this.loggedInAccountInfo = new AccountInfo(
+          accountInfo.id,
+          accountInfo.gmail,
+          accountInfo.username,
+          fullName
+        );
+        console.log(this.loggedInAccountInfo);
+      },
+      error => console.log(error)
+    )
   }
 
   /**
@@ -36,7 +57,7 @@ export class AccountComponent implements OnInit {
   }
 
   moveToAccount(){
-    this.router.navigate([this.loggedInAccountInfo.gmail]);
+    this.router.navigate([this.loggedInAccountInfo.getUsername()]);
   }
 
   /**
@@ -46,20 +67,6 @@ export class AccountComponent implements OnInit {
   logOut(){
     this.localStorage.removeAll();
     this.router.navigate(['/']);
-  }
-
-  setLoggedAccountInfo(accountGmail){
-    this.accountService.getByGmail(accountGmail).subscribe(
-      accountInfo => {
-        this.loggedInAccountInfo = accountInfo;
-      },
-      error => console.log(error)
-    )
-  }
-
-  loggedIn(){
-    this.loggedInAccount = this.localStorage.loggedIn();
-    return this.loggedInAccount;
   }
 
 }

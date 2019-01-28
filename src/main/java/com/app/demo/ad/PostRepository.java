@@ -2,7 +2,7 @@ package com.app.demo.ad;
 
 import java.util.Collection;
 
-import com.app.demo.models.Post;
+import com.app.demo.models.postModels.Post;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

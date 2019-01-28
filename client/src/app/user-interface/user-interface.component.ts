@@ -16,34 +16,25 @@ export class UserInterfaceComponent implements OnInit {
 
   private viewedAccountInfo: AccountInfo;
   private posts: Array<Post>;
-  private fullName: FullName;
-  private postAccountInfo: PostAccountInfo;
+  private viewedAccountFullName: FullName;
+  private viewedAccountPostAccountInfo: PostAccountInfo;
 
   constructor(private route: ActivatedRoute,
               private accountService: AccountService,
               private postService: PostService) { }
 
   ngOnInit() {
-    this.getViewedAccountInfo();
+    this.setVewiedAccountInformations();
   }
 
-  getViewedAccountInfo(){
+  setVewiedAccountInformations(){
     this.route.params.subscribe(
       param => {
-        this.accountService.getByGmail(param['gmail']).subscribe(
+        this.accountService.getByUsername(param['username']).subscribe(
           accountInfo => {
-            let fullName = new FullName(
-              accountInfo.fullName.firstName,
-              accountInfo.fullName.lastName);
-            let accInfo = new AccountInfo(
-              accountInfo.id,
-              accountInfo.gmail,
-              accountInfo.username,
-              fullName
-            );
-            this.viewedAccountInfo = accInfo;
-            this.storeDataInformation(this.viewedAccountInfo);
-            this.getPosts();
+            this.setViewedAccountFullName(accountInfo.fullName);
+            this.setViewedAccountInfo(accountInfo);
+            this.setViewedPostAccountInfo(accountInfo);
           }
         )
       },
@@ -53,21 +44,27 @@ export class UserInterfaceComponent implements OnInit {
     )
   }
 
-  storeDataInformation(accInfo: any){
-    this.fullName = new FullName(accInfo.fullName.firstName, accInfo.fullName.firstName);
-    this.postAccountInfo = new PostAccountInfo(accInfo.id, this.fullName);
+  setViewedAccountFullName(fullName: any){
+    this.viewedAccountFullName = new FullName(
+      fullName.firstName,
+      fullName.lastName
+    );
   }
 
-  getPosts(){
-    this.postService.getByAccountId(this.postAccountInfo.getId()).subscribe(
-      (res: any) => {
-        this.posts = new Array<Post>();
-        for(let post of res){
-          this.posts.push(new Post(post.message, this.postAccountInfo));
-        }
-      },
-      err => console.log(err)
-    )
+  setViewedAccountInfo(accInfo: any){
+    this.viewedAccountInfo = new AccountInfo(
+      accInfo.id,
+      accInfo.gmail,
+      accInfo.username,
+      this.viewedAccountFullName
+    );
+  }
+
+  setViewedPostAccountInfo(accInfo: any){
+    this.viewedAccountPostAccountInfo = new PostAccountInfo(
+      accInfo.id,
+      this.viewedAccountFullName
+    );
   }
 
 }

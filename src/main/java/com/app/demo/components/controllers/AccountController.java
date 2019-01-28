@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 import com.app.demo.components.services.AccountService;
-import com.app.demo.models.Account;
+import com.app.demo.models.accountModels.Account;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +29,12 @@ public class AccountController {
     @GetMapping("/accountGmail/{gmail}")
     public Optional<Account> findByGmail(@PathVariable String gmail){
         return accountService.getByGmail(gmail);
+    }
+
+    @GetMapping("/accountUsername/{username}")
+    public Optional<Account> findByUsername(@PathVariable String username){
+        System.out.println(username);
+        return accountService.getByUsername(username);
     }
 
     @PostMapping("/addAccount")

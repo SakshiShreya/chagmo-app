@@ -6,11 +6,8 @@ import java.util.Optional;
 import com.app.demo.ad.AccountRepository;
 import com.app.demo.ad.PostRepository;
 import com.app.demo.ad.SubjectRepository;
-import com.app.demo.models.Account;
-import com.app.demo.models.Post;
-import com.app.demo.models.PostForm;
+import com.app.demo.models.postModels.Post;
 
-import com.app.demo.models.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
