@@ -12,6 +12,8 @@ import {LoginForm} from "../models/form-models/LoginForm";
 export class HomeComponent implements OnInit {
 
   private loginForm: LoginForm;
+  noSuchEmail: boolean = false;
+  errorMsg: string = "";
 
   constructor(private accountService: AccountService,
               private router: Router,
@@ -28,8 +30,8 @@ export class HomeComponent implements OnInit {
     this.loginForm = new LoginForm(loginInfo.gmail, loginInfo.password);
     this.accountService.getByGmail(this.loginForm.gmail).subscribe(
       res => {
-        console.log(res.username);
-        if(this.loginForm.gmail == res.gmail){
+        // console.log(res.username);
+        if(res != null && this.loginForm.gmail == res.gmail){
           if(this.loginForm.password == res.password){
             if(this.localStorage.setloggedAccountUsername(res.username)){
               this.router.navigate(["dashboard"]);
@@ -38,6 +40,8 @@ export class HomeComponent implements OnInit {
             }
           }
         }else {
+          this.noSuchEmail = true;
+          this.errorMsg = "No such email exists.";
           console.log("Failed to log in");
         }
       },
