@@ -15,6 +15,8 @@ import {CoreService} from "../CoreService";
 })
 export class AccountService extends CoreService {
 
+  private API = CoreService.getAPI() + "/accounts";
+
   constructor(private http: HttpClient) {
     super();
   }
@@ -27,37 +29,37 @@ export class AccountService extends CoreService {
    *  Get all the accounts
    */
   getAll() {
-    return this.http.get(CoreService.getAPI() + "/accounts");
+    return this.http.get(this.API);
   }
 
   /**
    *  Get an account using its id
    */
   getById(id: number): any {
-    return this.http.get(CoreService.getAPI() + "/account/" + id);
+    return this.http.get(this.API + "/" + id);
   }
 
   /**
    *  Get an account using its gmail address
    */
   getByGmail(gmail: string): any {
-    return this.http.get(CoreService.getAPI() + "/accountGmail/" + gmail);
+    return this.http.get(this.API + "/gmails/" + gmail);
   }
 
   getByUsername(username: string): any {
-    return this.http.get(CoreService.getAPI() + "/accountUsername/" + username);
+    return this.http.get(this.API + "/usernames/" + username);
   }
 
   /**
    *  Save or update given account info
    */
   save(account: Account) {
-    return this.http.post(CoreService.getAPI() + "/addAccount", JSON.stringify(account),
+    return this.http.post(this.API + "/add", JSON.stringify(account),
       {headers: CoreService.getHttpHeader()});
   }
 
   delete(id: number) {
-    return this.http.delete(CoreService.getAPI() + "/deleteAccount/" + id);
+    return this.http.delete(this.API + "/delete/" + id);
   }
 
   update(accountForm: any){

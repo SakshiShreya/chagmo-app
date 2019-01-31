@@ -1,11 +1,11 @@
 <div style="text-align: center;" >
   <div class="text-left m-2">
-    <h1>This is {{viewedAccountInfo?.fullName.firstName}}'s account</h1>
+    <h1>This is {{accountData.getAccountInfo()?.fullName.firstName}}'s account</h1>
     <div>
       <h5>Personal information</h5>
       <div style="font-size: 13px;">
-        <p> Gmail address : {{ viewedAccountInfo?.gmail }}</p>
-        <p> Full name : {{ viewedAccountInfo?.fullName.firstName }} {{ viewedAccountInfo?.fullName.lastName }} </p>
+        <p> Gmail address : {{ accountData.getAccountInfo()?.gmail }}</p>
+        <p> Full name : {{ accountData.getAccountInfo()?.fullName.firstName }} {{ viewedAccountInfo?.fullName.lastName }} </p>
       </div>
     </div>
   </div><br>

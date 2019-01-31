@@ -1,4 +1,4 @@
-package com.app.demo.models.accountModels;
+package com.app.demo.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
