@@ -27,12 +27,14 @@ public class DemoApplication {
 	public void onStart(){
 
 		FullName fullName = new FullName();
+    
 		fullName.setFirstName("lastname");
 		fullName.setLastName("name");
 
 		Account acc = new Account();
 		acc.setGmail("name.lastname");
 		acc.setUsername("name7");
+    
 		acc.setFullName(fullName);
 		acc.setPassword("1");
 
