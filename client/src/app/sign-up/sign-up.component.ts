@@ -20,7 +20,8 @@ export class SignUpComponent {
       accountForm.gmail,
       accountForm.username,
       fullName,
-      accountForm.password
+      accountForm.password,
+      null
     );
 
     this.accountService.save(account).subscribe(

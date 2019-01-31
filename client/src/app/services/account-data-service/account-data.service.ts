@@ -14,28 +14,30 @@ export class AccountDataService {
 
   constructor() { }
 
+  setAccountInformations(accountInfo: Account){
+    this.account = accountInfo;
+    this.accountInfo = new AccountInfo(
+      this.account.getId(),
+      this.account.getGmail(),
+      this.account.getUsername(),
+      this.account.getFullName(),
+      this.account.getFollowers()
+    );
+    this.postAccountInfo = new PostAccountInfo(
+      this.account.getId(),
+      this.account.getFullName()
+    );
+  }
 
   getAccount(): Account {
     return this.account;
-  }
-
-  setAccount(value: Account) {
-    this.account = value;
   }
 
   getAccountInfo(): AccountInfo {
     return this.accountInfo;
   }
 
-  setAccountInfo(value: AccountInfo) {
-    this.accountInfo = value;
-  }
-
   getPostAccountInfo(): PostAccountInfo {
     return this.postAccountInfo;
-  }
-
-  setPostAccountInfo(value: PostAccountInfo) {
-    this.postAccountInfo = value;
   }
 }

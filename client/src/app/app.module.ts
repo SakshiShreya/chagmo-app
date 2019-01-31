@@ -18,9 +18,11 @@ import { NoAccountComponent } from './no-account/no-account.component';
 import { UserInterfaceComponent } from './user-interface/user-interface.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PostService } from './services/post-service/post.service';
-import { SubjectComponent } from './subject/subject.component';
 import { SubjectService } from "./services/subject-service/subject.service";
-import {AuthenticationService} from "./services/authentication-service/authentication.service";
+import { AuthenticationService } from "./services/authentication-service/authentication.service";
+import { TrendsComponent } from './trends/trends.component';
+import { TrendsListComponent } from './trends-list/trends-list.component';
+import { PostFormComponent } from './post-form/post-form.component';
 
 /**
  *  App routers
@@ -47,8 +49,8 @@ const appRouters: Routes = [
         component: DashboardComponent
       },
       {
-        path: "subjects",
-        component: SubjectComponent
+        path: "trends",
+        component: TrendsComponent
       },
       {
         path: ":username",
@@ -67,7 +69,9 @@ const appRouters: Routes = [
     NoAccountComponent,
     UserInterfaceComponent,
     DashboardComponent,
-    SubjectComponent
+    TrendsComponent,
+    TrendsListComponent,
+    PostFormComponent,
   ],
   imports: [
     BrowserModule,

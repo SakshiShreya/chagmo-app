@@ -2,11 +2,11 @@ export class FullName {
 
     constructor(private firstName: string, private lastName: string){ }
     
-    public get FirstName() : string {
+    public getFirstName() : string {
         return this.firstName;
     }
 
-    public get LastName() : string {
+    public getLastName() : string {
         return this.lastName
     }
     

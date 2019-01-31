@@ -3,8 +3,6 @@ import { HttpClient } from "@angular/common/http";
 import {LoginForm} from "../../models/form-models/LoginForm";
 import {CoreService} from "../CoreService";
 import {Account} from "../../models/account-models/Account";
-import {PostAccountInfo} from "../../models/post-models/PostAccountInfo";
-import {AccountInfo} from "../../models/account-models/AccountInfo";
 import {Router} from "@angular/router";
 
 @Injectable({
@@ -25,8 +23,13 @@ export class AuthenticationService extends CoreService {
       JSON.stringify(loginForm),
       {headers: CoreService.getHttpHeader()}).subscribe(
       (account: any) => {
-          localStorage.setItem(this.currentUser, JSON.stringify(account));
-          this.router.navigate(['dashboard']);
+          console.log(account);
+          if (account != null) {
+            localStorage.setItem(this.currentUser, JSON.stringify(account));
+            this.router.navigate(['dashboard']);
+          } else {
+            console.log("gmail or password is wrong");
+          }
         }
     );
   }
@@ -63,7 +66,8 @@ export class AuthenticationService extends CoreService {
       acc.gmail,
       acc.username,
       acc.fullName,
-      acc.password
+      acc.password,
+      acc.followers
     );
   }
 

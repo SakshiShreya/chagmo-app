@@ -8,8 +8,9 @@ export class Account extends AccountInfo {
               gmail: string,
               username: string,
               fullName: FullName,
-              private password: string) {
-    super(id, gmail, username, fullName);
+              private password: string,
+              followers: Array<Account>) {
+    super(id, gmail, username, fullName, followers);
   }
 
 }
