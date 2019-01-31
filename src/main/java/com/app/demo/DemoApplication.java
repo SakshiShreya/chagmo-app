@@ -29,10 +29,14 @@ public class DemoApplication {
 		FullName fullName = new FullName();
 		fullName.setFirstName("name");
 		fullName.setLastName("lastname");
+    
+		fullName.setFirstName("lastname");
+		fullName.setLastName("name");
 
 		Account acc = new Account();
 		acc.setGmail("name.lastname");
 		acc.setUsername("name7");
+
 		acc.setFullName(fullName);
 		acc.setPassword("1");
 
