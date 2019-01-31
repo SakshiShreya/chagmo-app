@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AccountService } from '../services/account-service/account.service';
 import { PostService } from '../services/post-service/post.service';
@@ -6,6 +6,8 @@ import { Post } from '../models/post-models/Post';
 import { PostAccountInfo } from '../models/post-models/PostAccountInfo';
 import { FullName } from '../models/FullName';
 import {AccountInfo} from "../models/account-models/AccountInfo";
+import {AccountComponent} from "../account/account.component";
+import {AccountDataService} from "../services/account-data-service/account-data.service";
 
 @Component({
   selector: 'app-user-interface',
@@ -14,57 +16,15 @@ import {AccountInfo} from "../models/account-models/AccountInfo";
 })
 export class UserInterfaceComponent implements OnInit {
 
-  private viewedAccountInfo: AccountInfo;
   private posts: Array<Post>;
-  private viewedAccountFullName: FullName;
-  private viewedAccountPostAccountInfo: PostAccountInfo;
 
   constructor(private route: ActivatedRoute,
               private accountService: AccountService,
-              private postService: PostService) { }
+              private postService: PostService,
+              private accountData: AccountDataService) { }
 
   ngOnInit() {
-    this.setVewiedAccountInformations();
-  }
 
-  setVewiedAccountInformations(){
-    this.route.params.subscribe(
-      param => {
-        this.accountService.getByUsername(param['username']).subscribe(
-          accountInfo => {
-            this.setViewedAccountFullName(accountInfo.fullName);
-            this.setViewedAccountInfo(accountInfo);
-            this.setViewedPostAccountInfo(accountInfo);
-          }
-        )
-      },
-      err => {
-        console.log(err);
-      }
-    )
-  }
-
-  setViewedAccountFullName(fullName: any){
-    this.viewedAccountFullName = new FullName(
-      fullName.firstName,
-      fullName.lastName
-    );
-  }
-
-  setViewedAccountInfo(accInfo: any){
-    this.viewedAccountInfo = new AccountInfo(
-      accInfo.id,
-      accInfo.gmail,
-      accInfo.username,
-      this.viewedAccountFullName
-    );
-  }
-
-  setViewedPostAccountInfo(accInfo: any){
-    this.viewedAccountPostAccountInfo = new PostAccountInfo(
-      accInfo.id,
-      this.viewedAccountFullName
-    );
   }
 
 }
