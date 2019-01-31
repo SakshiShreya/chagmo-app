@@ -3,8 +3,8 @@ package com.app.demo;
 import com.app.demo.ad.SubjectRepository;
 import com.app.demo.components.services.AccountService;
 import com.app.demo.models.Subject;
-import com.app.demo.models.accountModels.Account;
-import com.app.demo.models.accountModels.FullName;
+import com.app.demo.entities.Account;
+import com.app.demo.entities.FullName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,12 +27,14 @@ public class DemoApplication {
 	public void onStart(){
 
 		FullName fullName = new FullName();
-		fullName.setFirstName("FirstName");
-		fullName.setLastName("LastName");
+    
+		fullName.setFirstName("lastname");
+		fullName.setLastName("name");
 
 		Account acc = new Account();
-		acc.setGmail("FirstName.LastName@gmail.com");
-		acc.setUsername("FirstName7");
+		acc.setGmail("name.lastname");
+		acc.setUsername("name7");
+    
 		acc.setFullName(fullName);
 		acc.setPassword("1");
 

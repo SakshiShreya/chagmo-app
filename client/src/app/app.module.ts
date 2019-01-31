@@ -15,12 +15,12 @@ import { AccountService } from "./services/account-service/account.service";
 import { HttpClientModule } from "@angular/common/http";
 import { AccountComponent } from './account/account.component';
 import { NoAccountComponent } from './no-account/no-account.component';
-import { LocalStorageService } from './services/local-storage/local-storage.service';
 import { UserInterfaceComponent } from './user-interface/user-interface.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PostService } from './services/post-service/post.service';
 import { SubjectComponent } from './subject/subject.component';
 import { SubjectService } from "./services/subject-service/subject.service";
+import {AuthenticationService} from "./services/authentication-service/authentication.service";
 
 /**
  *  App routers
@@ -83,7 +83,7 @@ const appRouters: Routes = [
     AccountService,
     PostService,
     SubjectService,
-    LocalStorageService
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })

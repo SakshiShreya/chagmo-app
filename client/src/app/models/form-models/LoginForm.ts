@@ -1,22 +1,22 @@
 export class LoginForm {
 
-  constructor(private _gmail: string,
-              private _password: string){ }
+  constructor(private gmail: string,
+              private password: string){ }
 
-  get gmail(): string {
-    return this._gmail;
+  getGmail(): string {
+    return this.gmail;
   }
 
-  get password(): string {
-    return this._password;
+  getPassword(): string {
+    return this.password;
   }
 
-  set gmail(value: string) {
-    this._gmail = value;
+  setGmail(value: string) {
+    this.gmail = value;
   }
 
-  set password(value: string) {
-    this._password = value;
+  setPassword(value: string) {
+    this.password = value;
   }
 
 }

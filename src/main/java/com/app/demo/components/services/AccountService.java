@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 import com.app.demo.ad.AccountRepository;
-import com.app.demo.models.accountModels.Account;
+import com.app.demo.entities.Account;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
