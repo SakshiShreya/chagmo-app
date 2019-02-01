@@ -21,6 +21,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PostService } from './services/post-service/post.service';
 import { SubjectComponent } from './subject/subject.component';
 import { SubjectService } from "./services/subject-service/subject.service";
+import { PostComponent } from './dashboard/post/post.component';
 
 /**
  *  App routers
@@ -67,7 +68,8 @@ const appRouters: Routes = [
     NoAccountComponent,
     UserInterfaceComponent,
     DashboardComponent,
-    SubjectComponent
+    SubjectComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,

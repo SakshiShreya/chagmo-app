@@ -1,0 +1,41 @@
+<div class="post-body">
+  <div class="post-header">
+    <div class="post-header-left">
+      <div class="post-headshot">
+        <img [src]="user.img" alt="" />
+      </div>
+      <div class="post-title">
+        <span class="bold">{{ user.name }}</span> shared a
+        <span class="bold">{{ post.postType }}</span>
+        <br />
+        <span class="small">few seconds ago</span>
+        <!-- We will calculate what to show here. Need some discussion -->
+      </div>
+    </div>
+    <div class="post-header-right">
+      <div class="ellipsis">•••</div>
+      <!-- We need to discuss the menu that will show after clicking on this icon -->
+    </div>
+  </div>
+  <div class="post-content">
+    <p class="post-text">{{ post.data }}</p>
+    <div class="post-image" *ngIf="post.img">
+      <img [src]="post.img" />
+    </div>
+    <div class="post-extra-info">
+      <div class="post-rating">
+        <span class="post-rating-image"><span class="star"></span></span>
+        <span class="post-rating-number">{{ post.rating }}</span>
+      </div>
+      <div>
+        <div class="post-comments">{{ post.comments }} Comments</div>
+        <div class="post-shares">{{ post.shares }} Shares</div>
+      </div>
+    </div>
+  </div>
+  <div class="post-footer">
+    <button>Share</button>
+    <button>Rate</button>
+    <button>Comment</button>
+  </div>
+</div>
