@@ -12,6 +12,8 @@ import {AuthenticationService} from "../services/authentication-service/authenti
 export class HomeComponent implements OnInit {
 
   private loginForm: LoginForm;
+  noSuchEmail: boolean = false;
+  errorMsg: string = "";
 
   constructor(private accountService: AccountService,
               private router: Router,

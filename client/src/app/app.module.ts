@@ -20,7 +20,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PostService } from './services/post-service/post.service';
 import { SubjectComponent } from './subject/subject.component';
 import { SubjectService } from "./services/subject-service/subject.service";
+<<<<<<< HEAD
+import { PostComponent } from './dashboard/post/post.component';
+=======
 import {AuthenticationService} from "./services/authentication-service/authentication.service";
+>>>>>>> bb17efc7f77681c0ee7427f3dc0c4cff3c4b15ef
 
 /**
  *  App routers
@@ -67,7 +71,8 @@ const appRouters: Routes = [
     NoAccountComponent,
     UserInterfaceComponent,
     DashboardComponent,
-    SubjectComponent
+    SubjectComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
