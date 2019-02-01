@@ -2,10 +2,9 @@ package com.app.demo.ad;
 
 import java.util.Optional;
 
-import com.app.demo.models.accountModels.Account;
+import com.app.demo.entities.Account;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 public interface AccountRepository extends JpaRepository<Account, Long> {
 

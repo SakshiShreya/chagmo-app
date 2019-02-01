@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountService } from '../services/account-service/account.service';
-import { LocalStorageService } from '../services/local-storage/local-storage.service';
 import { AccountInfo } from "../models/account-models/AccountInfo";
 import { Account } from "../models/account-models/Account";
 import { FullName } from "../models/FullName";
@@ -11,6 +10,8 @@ import { PostService } from "../services/post-service/post.service";
 import { SubjectService } from "../services/subject-service/subject.service";
 import {PostForm} from "../models/form-models/PostForm";
 import {Subject} from "../models/Subject";
+import {AuthenticationService} from "../services/authentication-service/authentication.service";
+import {AccountDataService} from "../services/account-data-service/account-data.service";
 
 @Component({
   selector: 'app-account',
@@ -21,9 +22,9 @@ export class AccountComponent implements OnInit {
 
   private isLoggedInAccount: boolean = false;
 
-  private loggedInPostAccountInfo: PostAccountInfo;
-  private loggedInAccount: Account;
-  private loggedInAccountInfo: AccountInfo;
+  public loggedInPostAccountInfo: PostAccountInfo;
+  public loggedInAccount: Account;
+  public loggedInAccountInfo: AccountInfo;
 
   private postForm: PostForm;
 
@@ -33,10 +34,11 @@ export class AccountComponent implements OnInit {
               private accountService: AccountService,
               private postService: PostService,
               private subjectService: SubjectService,
-              private localStorage: LocalStorageService) { }
+              private authenticationService: AuthenticationService,
+              private accountData: AccountDataService) { }
 
   ngOnInit() {
-    if(this.localStorage.loggedIn()){
+    if(this.authenticationService.loggedIn()){
       console.log("You are logged in");
       this.setLoggedAccountInfo();
     }else {
@@ -45,30 +47,33 @@ export class AccountComponent implements OnInit {
   }
 
   setLoggedAccountInfo(){
-    this.accountService.getByUsername(this.localStorage.getLoggedAccountUsername()).subscribe(
+    this.accountService.getByUsername(
+      this.authenticationService.getLoggedInAccount().getUsername()
+    ).subscribe(
       accountInfo => {
         let fullName = new FullName(
           accountInfo.fullName.firstName,
           accountInfo.fullName.lastName
         );
-        this.loggedInAccountInfo = new AccountInfo(
-          accountInfo.id,
-          accountInfo.gmail,
-          accountInfo.username,
-          fullName
+        this.accountData.setAccount(new Account(
+            accountInfo.id,
+            accountInfo.gmail,
+            accountInfo.username,
+            fullName,
+            accountInfo.password
+          ));
+        this.accountData.setAccountInfo(new AccountInfo(
+            accountInfo.id,
+            accountInfo.gmail,
+            accountInfo.username,
+            fullName
+          )
         );
-        this.loggedInAccount = new Account(
-          accountInfo.id,
-          accountInfo.gmail,
-          accountInfo.username,
-          fullName,
-          accountInfo.password
+        this.accountData.setPostAccountInfo(new PostAccountInfo(
+            accountInfo.id,
+            fullName
+          )
         );
-        this.loggedInPostAccountInfo = new PostAccountInfo(
-          accountInfo.id,
-          fullName
-        );
-        console.log(this.loggedInAccount);
       },
       error => console.log(error)
     )
@@ -103,7 +108,7 @@ export class AccountComponent implements OnInit {
   }
 
   moveToAccount(){
-    this.router.navigate([this.loggedInAccountInfo.getUsername()]);
+    this.router.navigate([this.accountData.getAccountInfo().getUsername()]);
   }
 
   openPostWindow(){
@@ -119,7 +124,7 @@ export class AccountComponent implements OnInit {
    */
 
   logOut(){
-    this.localStorage.removeAll();
+    this.authenticationService.clearStorage();
     this.router.navigate(['/']);
   }
 

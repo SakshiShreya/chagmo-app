@@ -1,9 +1,8 @@
-package com.app.demo.models.postModels;
+package com.app.demo.entities;
 
 import javax.persistence.*;
 
 import com.app.demo.models.Subject;
-import com.app.demo.models.accountModels.Account;
 
 import java.util.ArrayList;
 import java.util.List;
