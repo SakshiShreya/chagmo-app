@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class LoginController {
+public class AuthenticationController {
 
     @Autowired
     private AuthenticationService authenticationService;
-//
-//    @PostMapping("/login")
-//    public Account tryLogin(@RequestBody LoginForm loginForm){
-//        return authenticationService.tryLogin(loginForm);
-//    }
+
+    @PostMapping("/login")
+    public Account tryLogin(@RequestBody LoginForm loginForm){
+        return authenticationService.tryLogin(loginForm);
+    }
 
 }

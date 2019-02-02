@@ -8,15 +8,11 @@ import com.app.demo.components.services.PostService;
 import com.app.demo.entities.Post;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins="http://localhost:4200")
+@RequestMapping("/posts")
 public class PostController {
 
     @Autowired
@@ -25,22 +21,22 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @GetMapping("/posts")
+    @GetMapping("")
     public Collection<Post> findAll(){
         return postService.getAll();
     }
 
-    @GetMapping("/post/{id}")
+    @GetMapping("/{id}")
     public Optional<Post> findById(@PathVariable int id){
         return postService.getById(id);
     }
 
-    @GetMapping("/posts/{id}")
-    public Collection<Post> findByAccountId(@PathVariable int id){
-        return postService.getByAccountId(id);
+    @GetMapping("/byAccount/{username}")
+    public Collection<Post> findByAccountUsername(@PathVariable String username){
+        return postService.getByAccountId(username);
     }
 
-    @PostMapping("/addPost")
+    @PostMapping("/add")
     public Post save(@RequestBody Post post){
         return postService.addPost(post);
     }

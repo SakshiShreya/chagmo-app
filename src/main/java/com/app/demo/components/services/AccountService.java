@@ -19,24 +19,20 @@ public class AccountService{
         return accountRepo.findAll();
     }
 
-    public Optional<Account> getById(int id) {
-        return accountRepo.findById(Long.valueOf(id));
+    public Optional<Account> getByUsername(String username) {
+        return accountRepo.findByUsername(username);
     }
 
     public Optional<Account> getByGmail(String gmail) {
         return accountRepo.findByGmail(gmail);
     }
 
-    public Optional<Account> getByUsername(String username){
-        return accountRepo.findByUsername(username);
-    }
-
     public Account addAccount(Account account) {
         return accountRepo.save(account);
     }
 
-    public boolean remove(int id){
-        Account account = accountRepo.findById(Long.valueOf(id)).orElse(null);
+    public boolean remove(String username){
+        Account account = accountRepo.findByUsername(username).orElse(null);
         if(account != null){
             accountRepo.delete(account);
             return true;

@@ -8,24 +8,26 @@ import {Post} from "../../models/post-models/Post";
 })
 export class PostService extends CoreService {
 
+  private API = CoreService.getAPI() + "/posts";
+
   constructor(private http: HttpClient) {
     super();
   }
   
   getAll(){
-    return this.http.get(CoreService.getAPI()+"/posts");
+    return this.http.get(this.API);
   }
 
   getById(id: number){
-    return this.http.get(CoreService.getAPI()+"/post/"+id);
+    return this.http.get(this.API+"/"+id);
   }
 
-  getByAccountId(id: number){
-    return this.http.get(CoreService.getAPI()+"/posts/"+id);
+  getByAccountId(username: string){
+    return this.http.get(this.API+"/byAccount"+username);
   }
 
   save(post: Post){
-    return this.http.post(CoreService.getAPI()+"/addPost",
+    return this.http.post(this.API+"/add",
       JSON.stringify(post),
       {headers: CoreService.getHttpHeader()});
   }

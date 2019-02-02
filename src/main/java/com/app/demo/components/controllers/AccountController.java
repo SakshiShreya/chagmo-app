@@ -22,15 +22,10 @@ public class AccountController {
         return accountService.getAll();
     }
 
-    @GetMapping("/{id}")
-    public Optional<Account> findById(@PathVariable int id){
-        return accountService.getById(id);
-    }
-
-    @GetMapping("/gmails/{gmail}")
-    public Optional<Account> findByGmail(@PathVariable String gmail){
-        return accountService.getByGmail(gmail);
-    }
+//    @GetMapping("/gmails/{gmail}")
+//    public Optional<Account> findByGmail(@PathVariable String gmail){
+//        return accountService.getByGmail(gmail);
+//    }
 
     @GetMapping("/usernames/{username}")
     public Optional<Account> findByUsername(@PathVariable String username){
@@ -42,9 +37,9 @@ public class AccountController {
         return accountService.addAccount(account);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public boolean delete(@PathVariable int id){
-        return accountService.remove(id);
+    @DeleteMapping("/delete/{username}")
+    public boolean delete(@PathVariable String username){
+        return accountService.remove(username);
     }
 
 }
