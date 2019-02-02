@@ -66,4 +66,6 @@ export class AccountComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  // new comment is added
+
 }
