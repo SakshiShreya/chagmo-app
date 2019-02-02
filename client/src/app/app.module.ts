@@ -22,7 +22,7 @@ import { SubjectService } from "./services/subject-service/subject.service";
 import { AuthenticationService } from "./services/authentication-service/authentication.service";
 import { TrendsComponent } from './trends/trends.component';
 import { TrendsListComponent } from './trends-list/trends-list.component';
-import { PostFormComponent } from './post-form/post-form.component';
+import { PostComponent } from './dashboard/post/post.component';
 
 /**
  *  App routers
@@ -71,7 +71,7 @@ const appRouters: Routes = [
     DashboardComponent,
     TrendsComponent,
     TrendsListComponent,
-    PostFormComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,

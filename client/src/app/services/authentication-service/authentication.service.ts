@@ -45,10 +45,6 @@ export class AuthenticationService extends CoreService {
     return false;
   }
 
-  clearStorage(){
-    localStorage.clear();
-  }
-
   setLoggedInAccountInformations(){
     let acc = localStorage.getItem(this.currentUser);
     console.log(JSON.parse(acc));

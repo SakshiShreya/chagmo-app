@@ -1,27 +1,87 @@
-import { PostAccountInfo } from './PostAccountInfo';
-import {Subject} from "../Subject";
+import {FullName} from "../account-models/FullName";
 
 export class Post {
 
-  constructor(private content: string,
-              private subjects: Array<Subject>,
-              private account: PostAccountInfo){
+  constructor(private fullName: FullName,
+              private username: string,
+              private userImage: string,
+              private postType: string,
+              private script: string,
+              private image: string,
+              private ratings: number,
+              private comments: number,
+              private shares: number){ }
+
+  getFullName(): FullName {
+    return this.fullName;
   }
 
-  getMessage() : string {
-    return this.content;
+  setFullName(value: FullName) {
+    this.fullName = value;
   }
 
-  getSubjects(): Array<Subject> {
-    return this.subjects;
+  getUsername(): string {
+    return this.username;
   }
 
-  setSubjects(value: Array<Subject>) {
-    this.subjects = value;
+  setUsername(value: string) {
+    this.username = value;
   }
 
-  getPostAccountInfo() : PostAccountInfo {
-    return this.account;
+  getUserImage(): string {
+    return this.userImage;
+  }
+
+  setUserImage(value: string) {
+    this.userImage = value;
+  }
+
+  getPostType(): string {
+    return this.postType;
+  }
+
+  setPostType(value: string) {
+    this.postType = value;
+  }
+
+  getScript(): string {
+    return this.script;
+  }
+
+  setScript(value: string) {
+    this.script = value;
+  }
+
+  getImage(): string {
+    return this.image;
+  }
+
+  setImage(value: string) {
+    this.image = value;
+  }
+
+  getRatings(): number {
+    return this.ratings;
+  }
+
+  setRatings(value: number) {
+    this.ratings = value;
+  }
+
+  getComments(): number {
+    return this.comments;
+  }
+
+  setComments(value: number) {
+    this.comments = value;
+  }
+
+  getShares(): number {
+    return this.shares;
+  }
+
+  setShares(value: number) {
+    this.shares = value;
   }
 
 }

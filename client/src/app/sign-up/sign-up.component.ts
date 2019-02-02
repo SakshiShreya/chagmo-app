@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { AccountService } from '../services/account-service/account.service';
-import {FullName} from "../models/FullName";
+import {FullName} from "../models/account-models/FullName";
 import {Account} from "../models/account-models/Account";
 
 @Component({

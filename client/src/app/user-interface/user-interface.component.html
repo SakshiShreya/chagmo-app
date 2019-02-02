@@ -1,23 +1,13 @@
 <div style="text-align: center;" >
   <div class="text-left m-2">
-    <h1>This is {{accountData.getAccountInfo()?.fullName.firstName}}'s account</h1>
+    <h1>This is {{ fullName?.getFirstName() }}'s account</h1>
     <div>
       <h5>Personal information</h5>
       <div style="font-size: 13px;">
-        <p> Gmail address : {{ viewedAccountInfo?.gmail }}</p>
-        <p> Full name : {{ fullName?.firstName }} {{ fullName?.lastName }} </p>
+        <p> Gmail address : {{ viewedAccountInfo?.getGmail() }}</p>
+        <p> Full name : {{ fullName?.getFirstName() }} {{ fullName?.getLastName() }} </p>
       </div>
     </div>
   </div><br>
-
-  <h3 class="text-left m-2" >Posts</h3>
-  <div class="text-left m-5" >
-    <div
-      style="background: #e5eef7;"
-      *ngFor="let post of posts">
-      <p>Contenet: {{ post.message }}</p>
-      <p>Author: {{ post.postAccountInfo.fullName.firstName }}</p>
-    </div>
-  </div>
 
 </div>

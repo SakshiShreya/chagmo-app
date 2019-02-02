@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Account} from "../../models/account-models/Account";
 import {AccountInfo} from "../../models/account-models/AccountInfo";
-import {PostAccountInfo} from "../../models/post-models/PostAccountInfo";
+import {FullName} from "../../models/account-models/FullName";
 
 @Injectable({
   providedIn: 'root'
@@ -10,22 +10,18 @@ export class AccountDataService {
 
   private account: Account;
   private accountInfo: AccountInfo;
-  private postAccountInfo: PostAccountInfo;
+  private fullName: FullName;
 
   constructor() { }
 
   setAccountInformations(accountInfo: Account){
     this.account = accountInfo;
+    this.fullName = this.account.getFullName();
     this.accountInfo = new AccountInfo(
-      this.account.getId(),
       this.account.getGmail(),
       this.account.getUsername(),
-      this.account.getFullName(),
+      this.fullName,
       this.account.getFollowers()
-    );
-    this.postAccountInfo = new PostAccountInfo(
-      this.account.getId(),
-      this.account.getFullName()
     );
   }
 
@@ -33,11 +29,23 @@ export class AccountDataService {
     return this.account;
   }
 
+  setAccount(value: Account){
+    this.account = value;
+  }
+
   getAccountInfo(): AccountInfo {
     return this.accountInfo;
   }
 
-  getPostAccountInfo(): PostAccountInfo {
-    return this.postAccountInfo;
+  setAccountInfo(value: AccountInfo) {
+    this.accountInfo = value;
+  }
+
+  getFullName(): FullName {
+    return this.fullName;
+  }
+
+  setFullName(value: FullName) {
+    this.fullName = value;
   }
 }

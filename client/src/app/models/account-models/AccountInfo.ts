@@ -1,15 +1,12 @@
-import {PostAccountInfo} from "../post-models/PostAccountInfo";
-import {FullName} from "../FullName";
+import {FullName} from "./FullName";
 import {Account} from "./Account";
 
-export class AccountInfo extends PostAccountInfo {
+export class AccountInfo {
 
-  constructor(id: number,
-              private gmail: string,
+  constructor(private gmail: string,
               private username: string,
-              fullName: FullName,
+              private fullName: FullName,
               private followers: Array<Account>){
-    super(id, fullName);
   }
 
   getGmail(): string {
@@ -28,6 +25,13 @@ export class AccountInfo extends PostAccountInfo {
     this.username = value;
   }
 
+  getFullName(): FullName {
+    return this.fullName;
+  }
+
+  setFullName(value: FullName) {
+    this.fullName = value;
+  }
 
   getFollowers(): Array<Account> {
     return this.followers;

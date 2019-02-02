@@ -62,7 +62,7 @@ export class AccountComponent implements OnInit {
   }
 
   logOut(){
-    this.authenticationService.clearStorage();
+    this.authenticationService.tryLogout();
     this.router.navigate(['/']);
   }
 
