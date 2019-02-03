@@ -10,6 +10,8 @@ import java.util.Optional;
 @Repository
 public interface FollowerRepository extends JpaRepository<Follower, String> {
 
-    public Collection<Follower> findFollowersByUsername(String username);
+    public Collection<Follower> findFollowersByFollowerUsername(String username);
+
+    public Collection<Follower> findFollowersByAccount_Username(String username);
 
 }

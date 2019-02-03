@@ -9,18 +9,18 @@ import javax.persistence.ManyToOne;
 public class Follower {
 
     @Id
-    @Column(name = "follower_username")
-    private String username;
+    @Column(name="followerUsername")
+    private String followerUsername;
 
     @ManyToOne
     private Account account;
 
-    public String getUsername() {
-        return username;
+    public String getFollowerUsername() {
+        return followerUsername;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setFollowerUsername(String followerUsername) {
+        this.followerUsername = followerUsername;
     }
 
     public Account getAccount() {
@@ -34,7 +34,7 @@ public class Follower {
     @Override
     public String toString() {
         return "Follower{" +
-                "username='" + username + '\'' +
+                "followerUsername='" + followerUsername + '\'' +
                 ", account=" + account +
                 '}';
     }

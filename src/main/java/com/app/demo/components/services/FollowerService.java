@@ -18,7 +18,11 @@ public class FollowerService {
     }
 
     public Collection<Follower> getByUsername(String username){
-        return followerRepo.findFollowersByUsername(username);
+        return followerRepo.findFollowersByFollowerUsername(username);
+    }
+
+    public Collection<Follower> getByAccountUsername(String username){
+        return followerRepo.findFollowersByAccount_Username(username);
     }
 
     public Follower add(Follower follower){

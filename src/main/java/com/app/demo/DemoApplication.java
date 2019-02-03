@@ -59,16 +59,14 @@ public class DemoApplication {
 		accountService.addAccount(tomAcc);
 
 		Follower follower = new Follower();
-		follower.setUsername(tomAcc.getUsername());
+		follower.setFollowerUsername(tomAcc.getUsername());
 		follower.setAccount(acc);
 
 		followerService.add(follower);
 
 		Follower follower1 = new Follower();
-		follower1.setUsername(acc.getUsername());
+		follower1.setFollowerUsername(acc.getUsername());
 		follower1.setAccount(tomAcc);
-
-//		System.out.println(follower);
 
 		followerService.add(follower1);
 
