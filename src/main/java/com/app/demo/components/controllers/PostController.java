@@ -33,7 +33,7 @@ public class PostController {
 
     @GetMapping("/byAccount/{username}")
     public Collection<Post> findByAccountUsername(@PathVariable String username){
-        return postService.getByAccountId(username);
+        return postService.getByAccountUsername(username);
     }
 
     @PostMapping("/add")

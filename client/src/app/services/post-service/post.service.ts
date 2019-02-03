@@ -22,8 +22,8 @@ export class PostService extends CoreService {
     return this.http.get(this.API+"/"+id);
   }
 
-  getByAccountId(username: string){
-    return this.http.get(this.API+"/byAccount"+username);
+  getByAccountUsername(username: string){
+    return this.http.get(this.API + "/byAccount/" + username);
   }
 
   save(post: Post){

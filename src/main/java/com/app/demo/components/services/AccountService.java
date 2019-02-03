@@ -31,6 +31,10 @@ public class AccountService{
         return accountRepo.save(account);
     }
 
+    public Account update(Account account){
+        return accountRepo.save(account);
+    }
+
     public boolean remove(String username){
         Account account = accountRepo.findByUsername(username).orElse(null);
         if(account != null){

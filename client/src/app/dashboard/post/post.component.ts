@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { post } from 'selenium-webdriver/http';
+import {Post} from "../../models/post-models/Post";
 
 @Component({
   selector: 'app-post',
@@ -8,7 +8,7 @@ import { post } from 'selenium-webdriver/http';
 })
 export class PostComponent implements OnInit {
 
-  @Input() post;
+  @Input() post: Post;
 
   constructor() { }
 

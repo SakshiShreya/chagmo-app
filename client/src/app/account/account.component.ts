@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Account } from "../models/account-models/Account";
 import { Router } from '@angular/router';
 import { AccountService } from '../services/account-service/account.service';
 import { PostService } from "../services/post-service/post.service";
 import { SubjectService } from "../services/subject-service/subject.service";
 import { AuthenticationService } from "../services/authentication-service/authentication.service";
-import { AccountDataService } from "../services/account-data-service/account-data.service";
 
 @Component({
   selector: 'app-account',
@@ -14,6 +14,7 @@ import { AccountDataService } from "../services/account-data-service/account-dat
 export class AccountComponent implements OnInit {
 
   private isLoggedInAccount: boolean = false;
+  private loggedInAccount: Account;
 
   public postWindowOpened = false;
 
@@ -21,23 +22,16 @@ export class AccountComponent implements OnInit {
               private accountService: AccountService,
               private postService: PostService,
               private subjectService: SubjectService,
-              private authenticationService: AuthenticationService,
-              private accountData: AccountDataService) { }
+              private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     if(this.authenticationService.loggedIn()){
       console.log("You are logged in");
       this.isLoggedInAccount = true;
-      this.setLoggedAccountInfo();
+      this.loggedInAccount = this.authenticationService.getLoggedInAccount();
     }else {
       this.router.navigate(['/no-account']);
     }
-  }
-
-  setLoggedAccountInfo(){
-    this.accountData.setAccountInformations(
-      this.authenticationService.getLoggedInAccount()
-    );
   }
 
   moveToDashboardComponent(){
@@ -45,7 +39,7 @@ export class AccountComponent implements OnInit {
   }
 
   moveToAccountComponent(){
-    this.router.navigate([this.accountData.getAccountInfo().getUsername()]);
+    this.router.navigate([this.loggedInAccount.getUsername()]);
   }
 
   moveToTrendsComponent(){

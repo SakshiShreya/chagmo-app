@@ -40,4 +40,18 @@ export class AccountInfo {
   setFollowers(value: Array<Account>) {
     this.followers = value;
   }
+
+  static anyToObject(any: any){
+    let fullName = new FullName(
+      any.fullName.firstName,
+      any.fullName.lastName
+    );
+    return new AccountInfo(
+      any.gmail,
+      any.username,
+      fullName,
+      any.followers
+    )
+  }
+
 }

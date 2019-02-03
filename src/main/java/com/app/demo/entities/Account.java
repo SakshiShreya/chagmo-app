@@ -23,6 +23,9 @@ public class Account {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
     private Collection<Post> posts = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
+    private Collection<Follower> followers = new ArrayList<>();
+
     public String getGmail() {
         return gmail;
     }
@@ -61,7 +64,8 @@ public class Account {
                 "username='" + username + '\'' +
                 ", gmail='" + gmail + '\'' +
                 ", fullName=" + fullName +
-                ", password='" + password +
+                ", password='" + password + '\'' +
+                ", posts=" + posts +
                 '}';
     }
 }

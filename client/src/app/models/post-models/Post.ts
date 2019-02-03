@@ -4,10 +4,10 @@ export class Post {
 
   constructor(private fullName: FullName,
               private username: string,
-              private userImage: string,
+              private userImageUrl: string,
               private postType: string,
               private script: string,
-              private image: string,
+              private imageUrl: string,
               private ratings: number,
               private comments: number,
               private shares: number){ }
@@ -28,12 +28,12 @@ export class Post {
     this.username = value;
   }
 
-  getUserImage(): string {
-    return this.userImage;
+  getUserImageUrl(): string {
+    return this.userImageUrl;
   }
 
-  setUserImage(value: string) {
-    this.userImage = value;
+  setUserImageUrl(value: string) {
+    this.userImageUrl = value;
   }
 
   getPostType(): string {
@@ -52,12 +52,12 @@ export class Post {
     this.script = value;
   }
 
-  getImage(): string {
-    return this.image;
+  getImageUrl(): string {
+    return this.imageUrl;
   }
 
-  setImage(value: string) {
-    this.image = value;
+  setImageUrl(value: string) {
+    this.imageUrl = value;
   }
 
   getRatings(): number {
@@ -82,6 +82,24 @@ export class Post {
 
   setShares(value: number) {
     this.shares = value;
+  }
+
+  static anyToObject(any: any){
+    let fullname = new FullName(
+      any.fullName.firstName,
+      any.fullName.lastName,
+    );
+    return new Post(
+      fullname,
+      any.username,
+      any.userImageUrl,
+      any.postType,
+      any.script,
+      any.imageUrl,
+      any.ratings,
+      any.comments,
+      any.shares
+    );
   }
 
 }

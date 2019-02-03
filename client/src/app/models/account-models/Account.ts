@@ -3,7 +3,6 @@ import {FullName} from "./FullName";
 
 export class Account extends AccountInfo {
 
-
   constructor(private id: number,
               gmail: string,
               username: string,
@@ -28,4 +27,20 @@ export class Account extends AccountInfo {
   setPassword(value: string) {
     this.password = value;
   }
+
+  static anyToObject(any: any){
+    let fullName = new FullName(
+      any.fullName.firstName,
+      any.fullName.lastName
+    );
+    return new Account(
+      any.id,
+      any.gmail,
+      any.username,
+      fullName,
+      any.password,
+      any.followers
+    );
+  }
+
 }

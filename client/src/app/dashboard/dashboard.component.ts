@@ -9,7 +9,7 @@ import {FullName} from "../models/account-models/FullName";
 })
 export class DashboardComponent implements OnInit {
 
-  posts: Array<Post>;
+  posts: Array<any>;
 
   constructor() { }
 

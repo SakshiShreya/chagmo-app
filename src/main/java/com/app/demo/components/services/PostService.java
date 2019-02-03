@@ -31,7 +31,7 @@ public class PostService{
         return postRepo.findById(Long.valueOf(id));
     }
 
-    public Collection<Post> getByAccountId(String username){
+    public Collection<Post> getByAccountUsername(String username){
         return postRepo.findByAccountUsername(username);
     }
 
