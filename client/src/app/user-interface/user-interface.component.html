@@ -1,14 +1,36 @@
 <div style="text-align: center;" >
-  <div class="text-left m-2">
-    <h1>This is {{ fullName?.getFirstName() }}'s account</h1>
-    <div>
-      <h5>Personal information</h5>
-      <div style="font-size: 13px;">
-        <p> Gmail address : {{ viewedAccountInfo?.getGmail() }}</p>
-        <p> Full name : {{ fullName?.getFirstName() }} {{ fullName?.getLastName() }} </p>
+  <div class="main_div">
+    <div class="profile_div">
+      <div class="profile_image">
+        <img class="profile_image" src="assets/images/img_avatar2.png">
+      </div>
+      <div class="full_name">
+        <span>
+          <b>
+            {{ fullName?.getFirstName() }}
+            {{ fullName?.getLastName() }}
+          </b>
+        </span>
       </div>
     </div>
-  </div><br>
+    <div class="followers_info">
+      <div>
+        <div style="float: left;">
+          {{ textFollowers }}
+          {{ followers?.length }}
+          <span>
+          </span>
+        </div>
+        <div style="float: right;">
+          <span>
+            {{ textFollowing }}
+            {{ following?.length }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
 
   <h3>Posts</h3>
   <app-post *ngFor="let post of posts" [post]="post" ></app-post>

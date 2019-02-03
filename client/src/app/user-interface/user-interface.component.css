@@ -1,0 +1,44 @@
+.main_div {
+  margin: auto;
+  width: 70%;
+  min-width: 450px;
+  height: 200px;
+  /*background: lightcoral;*/
+}
+
+.profile_div {
+  width: 30%;
+  /*height: 10%;*/
+  /*background: #a8a8a8;*/
+}
+
+.profile_image{
+  float: left;
+}
+
+.profile_image img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+}
+
+.full_name {
+  float: left;
+  font-size: 23px;
+  padding: 10px;
+}
+
+.followers_info {
+  float: right;
+  width: 70%;
+  height: 10%;
+  padding: 13px;
+  font-size: 18px;
+}
+
+.followers_info div {
+  width: 60%;
+  height: 10%;
+  background: #a8a8a8;
+  /*text-align: center;*/
+}
