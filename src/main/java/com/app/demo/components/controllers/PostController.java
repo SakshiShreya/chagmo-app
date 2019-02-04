@@ -3,7 +3,7 @@ package com.app.demo.components.controllers;
 import java.util.Collection;
 import java.util.Optional;
 
-import com.app.demo.components.services.AccountService;
+import com.app.demo.components.services.accountServices.AccountService;
 import com.app.demo.components.services.PostService;
 import com.app.demo.entities.Post;
 

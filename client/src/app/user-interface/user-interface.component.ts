@@ -16,11 +16,11 @@ import {FollowerService} from "../services/follower-service/follower.service";
 export class UserInterfaceComponent implements OnInit {
 
   private paramUsername: string;
-  private fullName: FullName;
-  private viewedAccountInfo: AccountInfo;
+  fullName: FullName;
+  viewedAccountInfo: AccountInfo;
 
-  private textFollowers = "Followers : ";
-  private textFollowing = "Following : ";
+  private textFollowers = "Followers";
+  private textFollowing = "Following";
   private followers: Array<Follower>;
   private following: Array<Follower>;
   private posts: Array<Post>;
@@ -63,7 +63,7 @@ export class UserInterfaceComponent implements OnInit {
         }
       },
       err => console.log(err)
-    )
+    );
     this.followerService.getByFollowerUsername(username).subscribe(
       (followers: any) => {
         this.followers = new Array<Follower>();

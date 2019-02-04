@@ -8,7 +8,7 @@ import { Follower } from "../../models/account-models/Follower";
 })
 export class FollowerService extends CoreService {
 
-  private API = CoreService.getAPI() + "/followers";
+  private API = CoreService.getAPI() + "/accounts/followers";
 
   constructor(private http: HttpClient) {
     super();

@@ -1,4 +1,6 @@
-package com.app.demo.entities;
+package com.app.demo.entities.accountEntities;
+
+import com.app.demo.entities.accountEntities.Account;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,11 +1,12 @@
-package com.app.demo.components.controllers;
+package com.app.demo.components.controllers.accountControllers;
 
 import java.util.Collection;
 import java.util.Optional;
 
-import com.app.demo.components.services.AccountService;
-import com.app.demo.entities.Account;
+import com.app.demo.components.services.accountServices.AccountService;
+import com.app.demo.entities.accountEntities.Account;
 
+import com.app.demo.entities.accountEntities.SecuredAccountData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,9 +33,14 @@ public class AccountController {
         return accountService.getByUsername(username);
     }
 
+    @GetMapping("/securedData")
+    public Optional<Account> findBySecuredData(@RequestBody SecuredAccountData securedAccountData){
+        return accountService.getBySecuredData(securedAccountData);
+    }
+
     @PostMapping("/add")
     public Account save(@RequestBody Account account){
-        return accountService.addAccount(account);
+        return accountService.add(account);
     }
 
     @DeleteMapping("/delete/{username}")

@@ -1,31 +1,21 @@
 import {AccountInfo} from "./AccountInfo";
 import {FullName} from "./FullName";
+import {SecuredAccountData} from "./SecuredAccountData";
 
 export class Account extends AccountInfo {
 
-  constructor(private id: number,
-              gmail: string,
-              username: string,
+  constructor(username: string,
               fullName: FullName,
-              private password: string,
-              followers: Array<Account>) {
-    super(gmail, username, fullName, followers);
+              private securedAccountData: SecuredAccountData) {
+    super(username, fullName);
   }
 
-  getId(): number {
-    return this.id;
+  getSecuredAccountData(): SecuredAccountData {
+    return this.securedAccountData;
   }
 
-  setId(value: number) {
-    this.id = value;
-  }
-
-  getPassword(): string {
-    return this.password;
-  }
-
-  setPassword(value: string) {
-    this.password = value;
+  setSecuredAccountData(value: SecuredAccountData) {
+    this.securedAccountData = value;
   }
 
   static anyToObject(any: any){
@@ -33,13 +23,14 @@ export class Account extends AccountInfo {
       any.fullName.firstName,
       any.fullName.lastName
     );
+    let securedAccountData = new SecuredAccountData(
+      any.securedAccountData.gmail,
+      any.securedAccountData.password
+    );
     return new Account(
-      any.id,
-      any.gmail,
       any.username,
       fullName,
-      any.password,
-      any.followers
+      securedAccountData
     );
   }
 

@@ -1,18 +1,18 @@
 package com.app.demo;
 
-import com.app.demo.components.services.AccountService;
-import com.app.demo.components.services.FollowerService;
+import com.app.demo.components.services.accountServices.AccountService;
+import com.app.demo.components.services.accountServices.FollowerService;
 import com.app.demo.components.services.PostService;
-import com.app.demo.entities.Follower;
+import com.app.demo.components.services.accountServices.SecuredDataService;
 import com.app.demo.entities.Post;
-import com.app.demo.entities.Account;
-import com.app.demo.entities.FullName;
+import com.app.demo.entities.accountEntities.Account;
+import com.app.demo.entities.accountEntities.Follower;
+import com.app.demo.entities.accountEntities.FullName;
+import com.app.demo.entities.accountEntities.SecuredAccountData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import java.util.*;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -26,6 +26,9 @@ public class DemoApplication {
 	@Autowired
 	private FollowerService followerService;
 
+	@Autowired
+	private SecuredDataService securedDataService;
+
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
@@ -37,26 +40,33 @@ public class DemoApplication {
 		john.setFirstName("John");
 		john.setLastName("Smith");
 
+		SecuredAccountData sad = new SecuredAccountData();
+		sad.setGmail("john.smith@gmail.com");
+		sad.setPassword("1");
+
 		Account acc = new Account();
 		acc.setUsername("john7");
-		acc.setGmail("john.smith@gmail.com");
-
 		acc.setFullName(john);
-		acc.setPassword("1");
+		acc.setSecuredAccountData(sad);
+
+		securedDataService.add(sad);
+		accountService.add(acc);
 
 		FullName tom = new FullName();
 		tom.setFirstName("Tom");
 		tom.setLastName("Jones");
 
+		SecuredAccountData sad1 = new SecuredAccountData();
+		sad1.setGmail("tom.jones@gmail.com");
+		sad1.setPassword("1");
+
 		Account tomAcc = new Account();
 		tomAcc.setUsername("tom7");
-		tomAcc.setGmail("tom.jones@gmail.com");
-
 		tomAcc.setFullName(tom);
-		tomAcc.setPassword("1");
+		tomAcc.setSecuredAccountData(sad1);
 
-		accountService.addAccount(acc);
-		accountService.addAccount(tomAcc);
+		securedDataService.add(sad1);
+		accountService.add(tomAcc);
 
 		Follower follower = new Follower();
 		follower.setFollowerUsername(tomAcc.getUsername());
@@ -69,8 +79,6 @@ public class DemoApplication {
 		follower1.setAccount(tomAcc);
 
 		followerService.add(follower1);
-
-		System.out.println(follower);
 
 		Post post = new Post();
 		post.setAccount(acc);

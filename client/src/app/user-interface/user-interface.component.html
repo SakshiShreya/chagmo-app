@@ -14,16 +14,26 @@
       </div>
     </div>
     <div class="followers_info">
-      <div>
-        <div style="float: left;">
-          {{ textFollowers }}
-          {{ followers?.length }}
+      <div style="float: left;" class="follow_box">
+        <div>
           <span>
+            {{ textFollowers }}
           </span>
         </div>
-        <div style="float: right;">
+        <div style="text-align: center;">
+          <span>
+            {{ followers?.length }}
+          </span>
+        </div>
+      </div>
+      <div style="float: right;" class="follow_box">
+        <div>
           <span>
             {{ textFollowing }}
+          </span>
+        </div>
+        <div style="text-align: center;">
+          <span>
             {{ following?.length }}
           </span>
         </div>

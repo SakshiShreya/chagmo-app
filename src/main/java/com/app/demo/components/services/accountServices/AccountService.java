@@ -1,11 +1,11 @@
-package com.app.demo.components.services;
+package com.app.demo.components.services.accountServices;
 
-import java.util.Collection;
-import java.util.Optional;
+import java.util.*;
 
-import com.app.demo.ad.AccountRepository;
-import com.app.demo.entities.Account;
+import com.app.demo.ad.accountRepositories.AccountRepository;
+import com.app.demo.entities.accountEntities.Account;
 
+import com.app.demo.entities.accountEntities.SecuredAccountData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,9 @@ public class AccountService{
     @Autowired
     private AccountRepository accountRepo;
 
+    @Autowired
+    private SecuredDataService securedDataService;
+
     public Collection<Account> getAll(){
         return accountRepo.findAll();
     }
@@ -23,11 +26,12 @@ public class AccountService{
         return accountRepo.findByUsername(username);
     }
 
-    public Optional<Account> getByGmail(String gmail) {
-        return accountRepo.findByGmail(gmail);
+    public Optional<Account> getBySecuredData(SecuredAccountData securedAccountData){
+        return accountRepo.findAccountBySecuredAccountData(securedAccountData);
     }
 
-    public Account addAccount(Account account) {
+    public Account add(Account account) {
+        securedDataService.add(account.getSecuredAccountData());
         return accountRepo.save(account);
     }
 

@@ -1,6 +1,7 @@
 package com.app.demo.entities;
 
-import org.hibernate.annotations.Cascade;
+import com.app.demo.entities.accountEntities.Account;
+import com.app.demo.entities.accountEntities.FullName;
 
 import javax.persistence.*;
 

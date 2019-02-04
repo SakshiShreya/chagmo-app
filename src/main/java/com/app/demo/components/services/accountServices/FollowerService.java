@@ -1,7 +1,7 @@
-package com.app.demo.components.services;
+package com.app.demo.components.services.accountServices;
 
-import com.app.demo.ad.FollowerRepository;
-import com.app.demo.entities.Follower;
+import com.app.demo.ad.accountRepositories.FollowerRepository;
+import com.app.demo.entities.accountEntities.Follower;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
