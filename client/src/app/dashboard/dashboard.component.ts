@@ -9,7 +9,7 @@ import {FullName} from "../models/account-models/FullName";
 })
 export class DashboardComponent implements OnInit {
 
-  posts: Array<Post>;
+  posts: Array<any>;
 
   constructor() { }
 
@@ -50,25 +50,5 @@ export class DashboardComponent implements OnInit {
     );
 
   }
-
-  // posts = [{
-  //   userName: "John Smith",
-  //   userImg: "assets/images/Profile-Placeholder.png",
-  //   postType: "Image",
-  //   data: "Some random text, Some random text, Some random text, Some random text, Some random text, Some random text, Some random text, Some random text",
-  //   img: "assets/images/placeholder.png",
-  //   rating: 327,
-  //   comments: 24,
-  //   shares: 17
-  // },
-  // {
-  //   userName: "Sakshi Shreya",
-  //   userImg: "assets/images/Profile-Placeholder.png",
-  //   postType: "Post",
-  //   data: "Some random text, Some random text, Some random text, Some random text, Some random text, Some random text, Some random text, Some random text",
-  //   rating: 23,
-  //   comments: 1,
-  //   shares: 0
-  // }];
 
 }

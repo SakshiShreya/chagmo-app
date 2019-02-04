@@ -2,19 +2,19 @@ import {HttpHeaders} from "@angular/common/http";
 
 export class CoreService {
 
-  private static _API = "https://spring-boot-t-app.herokuapp.com";
-  // private static _API = "http://localhost:8080";
+  // private static API = "https://spring-boot-t-app.herokuapp.com";
+  private static API = "http://localhost:8080";
 
   private static httpHeader = new HttpHeaders(
     {'Content-Type':'application/json'}
   );
 
   static getAPI(): string {
-    return this._API;
+    return this.API;
   }
 
   static setAPI(value: string) {
-    this._API = value;
+    this.API = value;
   }
 
 

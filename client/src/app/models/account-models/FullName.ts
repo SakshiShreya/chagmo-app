@@ -9,5 +9,12 @@ export class FullName {
     public getLastName() : string {
         return this.lastName
     }
+
+    static anyToObject(any: any){
+      return new FullName(
+        any.firstName,
+        any.lastName
+      )
+    }
     
 }

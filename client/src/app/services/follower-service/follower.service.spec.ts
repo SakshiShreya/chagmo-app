@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AccountDataService } from './account-data.service';
+import { FollowerService } from './follower.service';
 
-describe('AccountDataService', () => {
+describe('FollowerService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: AccountDataService = TestBed.get(AccountDataService);
+    const service: FollowerService = TestBed.get(FollowerService);
     expect(service).toBeTruthy();
   });
 });

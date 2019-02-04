@@ -1,4 +1,4 @@
-package com.app.demo.entities;
+package com.app.demo.entities.accountEntities;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -6,10 +6,10 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class FullName {
 
-    @Column(name = "first_name")
+    @Column(name = "firstName", nullable = false)
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "lastName", nullable = false)
     private String lastName;
 
     public FullName(){}
@@ -36,8 +36,10 @@ public class FullName {
     }
 
     @Override
-    public String toString(){
-        return "FullName = [first_name: "+this.firstName+", last_name: "+this.lastName+"]";
+    public String toString() {
+        return "FullName{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
-
 }

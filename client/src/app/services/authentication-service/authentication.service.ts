@@ -57,14 +57,7 @@ export class AuthenticationService extends CoreService {
 
   setLoggedInAccount() {
     let acc = JSON.parse(localStorage.getItem(this.currentUser));
-    this.loggedInAccount = new Account(
-      acc.id,
-      acc.gmail,
-      acc.username,
-      acc.fullName,
-      acc.password,
-      acc.followers
-    );
+    this.loggedInAccount = Account.anyToObject(acc);
   }
 
 }

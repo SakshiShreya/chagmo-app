@@ -2,12 +2,12 @@
   <div class="post-header">
     <div class="post-header-left">
       <div class="post-headshot">
-        <img [src]="post.getUserImage()" alt="" />
+        <img [src]="post.getUserImageUrl()" alt="" />
       </div>
       <div class="post-title">
         <span class="bold">
           {{ post.getFullName().getFirstName() }}
-          {{ post.getFullName().getFirstName() }}
+          {{ post.getFullName().getLastName() }}
         </span> shared a
         <span class="bold">{{ post.getPostType() }}</span>
         <br />
@@ -22,8 +22,8 @@
   </div>
   <div class="post-content">
     <p class="post-text">{{ post.getScript() }}</p>
-    <div class="post-image" *ngIf="post.getImage()">
-      <img [src]="post.getImage()" />
+    <div class="post-image" *ngIf="post.getImageUrl()">
+      <img [src]="post.getImageUrl()" />
     </div>
     <div class="post-extra-info">
       <div class="post-rating">

@@ -3,18 +3,8 @@ import {Account} from "./Account";
 
 export class AccountInfo {
 
-  constructor(private gmail: string,
-              private username: string,
-              private fullName: FullName,
-              private followers: Array<Account>){
-  }
-
-  getGmail(): string {
-    return this.gmail;
-  }
-
-  setGmail(value: string) {
-    this.gmail = value;
+  constructor(private username: string,
+              private fullName: FullName){
   }
 
   getUsername(): string {
@@ -33,11 +23,15 @@ export class AccountInfo {
     this.fullName = value;
   }
 
-  getFollowers(): Array<Account> {
-    return this.followers;
+  static anyToObject(any: any){
+    let fullName = new FullName(
+      any.fullName.firstName,
+      any.fullName.lastName
+    );
+    return new AccountInfo(
+      any.username,
+      fullName
+    )
   }
 
-  setFollowers(value: Array<Account>) {
-    this.followers = value;
-  }
 }
