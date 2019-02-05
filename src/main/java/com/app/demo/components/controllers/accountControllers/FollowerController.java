@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/accounts/followers")
@@ -20,7 +21,13 @@ public class FollowerController {
         return followerService.getAll();
     }
 
-    @GetMapping("/{username}")
+    @GetMapping("/byFollowerAndAccount/{followerUsername}/{accountUsername}")
+    public Optional<Follower> findByAccountAnfFollower(@PathVariable String followerUsername,
+                                                       @PathVariable String accountUsername){
+        return followerService.getByFollowerAndAccount(followerUsername, accountUsername);
+    }
+
+    @GetMapping("/followerUsername/{username}")
     public Collection<Follower> findByUsername(@PathVariable String username){
         return followerService.getByUsername(username);
     }
@@ -33,6 +40,22 @@ public class FollowerController {
     @PostMapping("/add")
     public Follower save(@RequestBody Follower follower){
         return followerService.add(follower);
+    }
+
+    @DeleteMapping("/delete/{followerUsername}/{accountUsername}")
+    public boolean delete(@PathVariable String followerUsername,
+                          @PathVariable String accountUsername){
+        return followerService.remove(followerUsername, accountUsername);
+    }
+
+    @GetMapping("/autoFollowOrUnfollow/{followerUsername}/{accountUsername}")
+    public void autoFollowOrUnfollow(@PathVariable String followerUsername,
+                                        @PathVariable String accountUsername){
+        try{
+            followerService.autoFollowOrUnfollow(followerUsername, accountUsername);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }

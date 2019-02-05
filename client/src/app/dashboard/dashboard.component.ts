@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
     this.posts = new Array<Post>();
 
     this.posts.push(

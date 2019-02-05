@@ -5,8 +5,10 @@ import { PostService } from '../services/post-service/post.service';
 import {AccountInfo} from "../models/account-models/AccountInfo";
 import {FullName} from "../models/account-models/FullName";
 import {Post} from "../models/post-models/Post";
-import {Follower} from "../models/account-models/Follower";
 import {FollowerService} from "../services/follower-service/follower.service";
+import {AuthenticationService} from "../services/authentication-service/authentication.service";
+import {Follower} from "../models/account-models/Follower";
+import {ProfileFollowers} from "../models/ProfileFollowers";
 
 @Component({
   selector: 'app-user-interface',
@@ -15,20 +17,21 @@ import {FollowerService} from "../services/follower-service/follower.service";
 })
 export class UserInterfaceComponent implements OnInit {
 
-  private paramUsername: string;
   fullName: FullName;
   viewedAccountInfo: AccountInfo;
 
-  private textFollowers = "Followers";
-  private textFollowing = "Following";
-  private followers: Array<Follower>;
-  private following: Array<Follower>;
+  profileFollowers: ProfileFollowers;
+
+  isViewedLoggedInAccount: boolean = false;
+  isFollowingViewedAccount: boolean = false;
+
   private posts: Array<Post>;
 
   constructor(private route: ActivatedRoute,
               private accountService: AccountService,
               private postService: PostService,
-              private followerService: FollowerService) { }
+              private followerService: FollowerService,
+              private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     this.checkIfViewedLoggedInAccount();
@@ -37,10 +40,22 @@ export class UserInterfaceComponent implements OnInit {
   checkIfViewedLoggedInAccount(){
     this.route.params.subscribe(
       param => {
-        this.paramUsername = param['username'];
-        this.setViewedAccountInfo(this.paramUsername);
+        let viewedUsername = param['username'];
+        let isFollowing = this.authenticationService
+          .getLoggedInAccount()
+          .getUsername() == viewedUsername;
+        this.setIsViewedLoggedInAccount(isFollowing);
+        this.setViewedAccountInfo(viewedUsername);
       }
     )
+  }
+
+  setIsViewedLoggedInAccount(isFollowing: boolean){
+    this.isViewedLoggedInAccount = isFollowing;
+  }
+
+  setIsFollowingViewedAccount(isFollowing: boolean){
+    this.isFollowingViewedAccount = isFollowing;
   }
 
   setViewedAccountInfo(username: string){
@@ -50,29 +65,43 @@ export class UserInterfaceComponent implements OnInit {
         this.viewedAccountInfo = AccountInfo.anyToObject(account);
       }
     );
-    this.setFollowerRelatedData(username);
     this.setPosts(username);
+    this.setFollowerRelatedData(username);
   }
 
   setFollowerRelatedData(username: string){
+    this.profileFollowers = new ProfileFollowers();
+    this.getFollowers(username);
+    this.getFollowings(username);
+  }
+
+  getFollowers(username: string){
     this.followerService.getByAccountUsername(username).subscribe(
-      (followers: any) => {
-        this.following = new Array<Follower>();
-        for(let follower of followers){
-          this.following.push(Follower.anyToObject(follower));
-        }
-      },
-      err => console.log(err)
-    );
-    this.followerService.getByFollowerUsername(username).subscribe(
-      (followers: any) => {
-        this.followers = new Array<Follower>();
-        for(let follower of followers){
-          this.followers.push(Follower.anyToObject(follower));
+      (followersAny: any) => {
+        this.profileFollowers.setFollowers(new Array<Follower>());
+        for(let followerAny of followersAny){
+          let follower = Follower.anyToObject(followerAny);
+          this.profileFollowers.getFollowers().push(follower);
+          if(follower.getFollowerUsername() == this.authenticationService.getLoggedInAccount().getUsername()){
+            this.setIsFollowingViewedAccount(true);
+          }
         }
       },
       err => console.log(err)
     )
+  }
+
+  getFollowings(username: string){
+    this.followerService.getByFollowerUsername(username).subscribe(
+      (followingsAny: any) => {
+        this.profileFollowers.setFollowing(new Array<Follower>());
+        for(let followerAny of followingsAny){
+          let follower = Follower.anyToObject(followerAny);
+          this.profileFollowers.getFollowing().push(follower);
+        }
+      },
+      err => console.log(err)
+    );
   }
 
   setPosts(username: string){
