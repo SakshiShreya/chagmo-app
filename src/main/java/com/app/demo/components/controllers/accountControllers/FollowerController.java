@@ -2,6 +2,7 @@ package com.app.demo.components.controllers.accountControllers;
 
 import com.app.demo.components.services.accountServices.FollowerService;
 import com.app.demo.entities.accountEntities.Follower;
+import com.app.demo.models.AutoFollowResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,13 +50,9 @@ public class FollowerController {
     }
 
     @GetMapping("/autoFollowOrUnfollow/{followerUsername}/{accountUsername}")
-    public void autoFollowOrUnfollow(@PathVariable String followerUsername,
-                                        @PathVariable String accountUsername){
-        try{
-            followerService.autoFollowOrUnfollow(followerUsername, accountUsername);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+    public AutoFollowResponse autoFollowOrUnfollow(@PathVariable String followerUsername,
+                                                   @PathVariable String accountUsername){
+        return followerService.autoFollowOrUnfollow(followerUsername, accountUsername);
     }
 
 }

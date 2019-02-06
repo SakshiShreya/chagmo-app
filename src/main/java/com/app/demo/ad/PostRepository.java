@@ -1,6 +1,6 @@
 package com.app.demo.ad;
 
-import com.app.demo.entities.Post;
+import com.app.demo.entities.postEntities.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

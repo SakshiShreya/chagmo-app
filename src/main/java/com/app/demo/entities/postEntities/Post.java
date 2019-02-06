@@ -1,25 +1,31 @@
-package com.app.demo.entities;
+package com.app.demo.entities.postEntities;
 
 import com.app.demo.entities.accountEntities.Account;
 import com.app.demo.entities.accountEntities.FullName;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity(name="post")
 public class Post{
 
     @Id
+    @NotNull
     @GeneratedValue
-    @Column(name="id", nullable=false, unique=true)
+    @Column(name="id", unique=true)
     private Long id;
 
-    @Column(name="fullName", nullable=false)
+    @NotNull
+    @Column(name="fullName")
     private FullName fullName;
 
     @Column(name="userImageUrl")
     private String userImageUrl;
 
-    @Column(name="postType", nullable = false)
+    @NotNull
+    @Column(name="postType")
     private String postType;
 
     @Column(name="script", nullable = true)
@@ -36,6 +42,10 @@ public class Post{
 
     @Column(name="shares")
     private int shares = 0;
+
+    @NotNull
+    @Column(name="date")
+    private LocalDateTime date;
 
     @ManyToOne
     @JoinColumn(name="account")
@@ -121,6 +131,14 @@ public class Post{
         this.account = account;
     }
 
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
     @Override
     public String toString() {
         return "Post{" +
@@ -133,8 +151,8 @@ public class Post{
                 ", ratings=" + ratings +
                 ", comments=" + comments +
                 ", shares=" + shares +
+                ", date=" + date +
                 ", account=" + account +
                 '}';
     }
-
 }

@@ -1,6 +1,6 @@
 package com.app.demo.entities.accountEntities;
 
-import com.app.demo.entities.Post;
+import com.app.demo.entities.postEntities.Post;
 
 import javax.persistence.*;
 import java.util.ArrayList;

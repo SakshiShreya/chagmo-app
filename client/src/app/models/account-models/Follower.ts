@@ -2,9 +2,11 @@ import {Account} from "./Account";
 
 export class Follower {
 
-  constructor(private id: number,
-              private followerUsername: string,
-              private account: Account) { }
+  private id: number;
+  private followerUsername: string;
+  private account: Account;
+
+  constructor() { }
 
 
   getId(): number {
@@ -33,11 +35,10 @@ export class Follower {
 
   static anyToObject(any: any){
     let account = Account.anyToObject(any.account);
-    return new Follower(
-      any.id,
-      any.followerUsername,
-      account
-    );
+    let follower = new Follower();
+    follower.setFollowerUsername(any.followerUsername);
+    follower.setAccount(any.account);
+    return follower;
   }
 
 }

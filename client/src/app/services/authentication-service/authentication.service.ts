@@ -26,7 +26,7 @@ export class AuthenticationService extends CoreService {
           console.log(account);
           if (account != null) {
             localStorage.setItem(this.currentUser, JSON.stringify(account));
-            this.router.navigate(['dashboard']);
+            this.moveToHomepage();
           } else {
             console.log("gmail or password is wrong");
           }
@@ -36,18 +36,14 @@ export class AuthenticationService extends CoreService {
 
   tryLogout(){
     localStorage.clear();
+    this.moveToStarter();
   }
 
-  loggedIn(): boolean {
+  isLoggedIn(): boolean {
     if(localStorage.getItem(this.currentUser)){
       return true;
     }
     return false;
-  }
-
-  setLoggedInAccountInformations(){
-    let acc = localStorage.getItem(this.currentUser);
-    console.log(JSON.parse(acc));
   }
 
   getLoggedInAccount(): Account {
@@ -57,7 +53,19 @@ export class AuthenticationService extends CoreService {
 
   setLoggedInAccount() {
     let acc = JSON.parse(localStorage.getItem(this.currentUser));
-    this.loggedInAccount = Account.anyToObject(acc);
+    if (acc != null) {
+      this.loggedInAccount = Account.anyToObject(acc);
+    } else {
+      this.loggedInAccount = null;
+    }
+  }
+
+  moveToStarter(){
+    this.router.navigate(['']);
+  }
+
+  moveToHomepage(){
+    this.router.navigate(['homepage']);
   }
 
 }

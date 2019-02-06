@@ -15,19 +15,17 @@ import { AccountService } from "./services/account-service/account.service";
 import { HttpClientModule } from "@angular/common/http";
 import { AccountComponent } from './account/account.component';
 import { NoAccountComponent } from './no-account/no-account.component';
-import { UserInterfaceComponent } from './user-interface/user-interface.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { PostService } from './services/post-service/post.service';
 import { SubjectService } from "./services/subject-service/subject.service";
 import { AuthenticationService } from "./services/authentication-service/authentication.service";
 import { TrendsComponent } from './trends/trends.component';
 import { TrendsListComponent } from './trends-list/trends-list.component';
-import { PostComponent } from './dashboard/post/post.component';
+import { PostComponent } from './homepage/post/post.component';
 import { ProfileComponent } from './profile/profile.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { StarterComponent } from './starter/starter.component';
+import { UserpageComponent } from './userpage/userpage.component';
 
-/**
- *  App routers
- */
 const appRouters: Routes = [
   {
     path: "sign-up",
@@ -39,15 +37,15 @@ const appRouters: Routes = [
   },
   {
     path: "",
-    component: HomeComponent
+    component: StarterComponent
   },
   {
     path: "",
     component: AccountComponent,
     children: [
       {
-        path: "dashboard",
-        component: DashboardComponent
+        path: "homepage",
+        component: HomepageComponent
       },
       {
         path: "trends",
@@ -55,7 +53,7 @@ const appRouters: Routes = [
       },
       {
         path: ":username",
-        component: UserInterfaceComponent
+        component: UserpageComponent
       }
     ]
   }
@@ -64,12 +62,13 @@ const appRouters: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    StarterComponent,
+    HomepageComponent,
     HomeComponent,
     SignUpComponent,
     AccountComponent,
     NoAccountComponent,
-    UserInterfaceComponent,
-    DashboardComponent,
+    UserpageComponent,
     TrendsComponent,
     TrendsListComponent,
     PostComponent,
