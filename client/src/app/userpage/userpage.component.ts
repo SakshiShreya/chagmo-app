@@ -1,21 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { AccountService } from '../services/account-service/account.service';
-import { PostService } from '../services/post-service/post.service';
-import {AccountInfo} from "../models/account-models/AccountInfo";
+import { Component, OnInit } from '@angular/core';
 import {FullName} from "../models/account-models/FullName";
+import {AccountInfo} from "../models/account-models/AccountInfo";
+import {ProfileFollowers} from "../models/ProfileFollowers";
 import {Post} from "../models/post-models/Post";
+import {ActivatedRoute} from "@angular/router";
+import {AccountService} from "../services/account-service/account.service";
+import {PostService} from "../services/post-service/post.service";
 import {FollowerService} from "../services/follower-service/follower.service";
 import {AuthenticationService} from "../services/authentication-service/authentication.service";
 import {Follower} from "../models/account-models/Follower";
-import {ProfileFollowers} from "../models/ProfileFollowers";
 
 @Component({
-  selector: 'app-user-interface',
-  templateUrl: './user-interface.component.html',
-  styleUrls: ['./user-interface.component.css']
+  selector: 'app-userpage',
+  templateUrl: './userpage.component.html',
+  styleUrls: ['./userpage.component.css']
 })
-export class UserInterfaceComponent implements OnInit {
+export class UserpageComponent implements OnInit {
 
   fullName: FullName;
   viewedAccountInfo: AccountInfo;
@@ -25,7 +25,7 @@ export class UserInterfaceComponent implements OnInit {
   isViewedLoggedInAccount: boolean = false;
   isFollowingViewedAccount: boolean = false;
 
-  private posts: Array<Post>;
+  posts: Array<Post>;
 
   constructor(private route: ActivatedRoute,
               private accountService: AccountService,

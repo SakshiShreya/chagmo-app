@@ -25,7 +25,7 @@ export class AccountComponent implements OnInit {
               private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    if(this.authenticationService.loggedIn()){
+    if(this.authenticationService.isLoggedIn()){
       console.log("You are logged in");
       this.isLoggedInAccount = true;
       this.loggedInAccount = this.authenticationService.getLoggedInAccount();
@@ -35,7 +35,7 @@ export class AccountComponent implements OnInit {
   }
 
   moveToDashboardComponent(){
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['']);
   }
 
   moveToAccountComponent(){
@@ -57,7 +57,6 @@ export class AccountComponent implements OnInit {
 
   logOut(){
     this.authenticationService.tryLogout();
-    this.router.navigate(['/']);
   }
 
 }

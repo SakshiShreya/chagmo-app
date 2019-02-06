@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.app.demo.components.services.accountServices.AccountService;
 import com.app.demo.components.services.PostService;
-import com.app.demo.entities.Post;
+import com.app.demo.entities.postEntities.Post;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

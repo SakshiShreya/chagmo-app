@@ -3,6 +3,7 @@ package com.app.demo.components.services.accountServices;
 import com.app.demo.ad.accountRepositories.FollowerRepository;
 import com.app.demo.entities.accountEntities.Account;
 import com.app.demo.entities.accountEntities.Follower;
+import com.app.demo.models.AutoFollowResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,20 +52,21 @@ public class FollowerService {
         followerRepo.delete(follower);
     }
 
-    public void autoFollowOrUnfollow(String followerUsername, String accountusername) throws Exception {
+    public AutoFollowResponse autoFollowOrUnfollow(String followerUsername, String accountusername) {
         Follower follower = getByFollowerAndAccount(followerUsername, accountusername).orElse(null);
         Account account = accountService.getByUsername(accountusername).orElse(null);
         if(account == null){
-            throw new Exception("Warning : logged in account is not in the database");
+            System.err.println("Warning : logged in account is not in the database");
         }
         if(follower == null){
             Follower newFollower = new Follower();
             newFollower.setFollowerUsername(followerUsername);
             newFollower.setAccount(account);
             add(newFollower);
-            System.out.println(newFollower);
-        }else if(follower != null){
+            return new AutoFollowResponse(newFollower, true);
+        }else {
             remove(follower);
+            return new AutoFollowResponse(follower, false);
         }
     }
 

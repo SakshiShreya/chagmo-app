@@ -10,7 +10,8 @@ export class Post {
               private imageUrl: string,
               private ratings: number,
               private comments: number,
-              private shares: number){ }
+              private shares: number,
+              private date: string){ }
 
   getFullName(): FullName {
     return this.fullName;
@@ -84,13 +85,21 @@ export class Post {
     this.shares = value;
   }
 
+  getDate(): string {
+    return this.date;
+  }
+
+  setDate(value: string) {
+    this.date = value;
+  }
+
   static anyToObject(any: any){
-    let fullname = new FullName(
+    let fullName = new FullName(
       any.fullName.firstName,
       any.fullName.lastName,
     );
     return new Post(
-      fullname,
+      fullName,
       any.username,
       any.userImageUrl,
       any.postType,
@@ -98,7 +107,8 @@ export class Post {
       any.imageUrl,
       any.ratings,
       any.comments,
-      any.shares
+      any.shares,
+      any.date
     );
   }
 

@@ -4,7 +4,7 @@ import com.app.demo.components.services.accountServices.AccountService;
 import com.app.demo.components.services.accountServices.FollowerService;
 import com.app.demo.components.services.PostService;
 import com.app.demo.components.services.accountServices.SecuredDataService;
-import com.app.demo.entities.Post;
+import com.app.demo.entities.postEntities.Post;
 import com.app.demo.entities.accountEntities.Account;
 import com.app.demo.entities.accountEntities.Follower;
 import com.app.demo.entities.accountEntities.FullName;
@@ -13,6 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -91,19 +95,21 @@ public class DemoApplication {
 		post.setComments(17);
 		post.setShares(1);
 
-		Post post1 = new Post();
-		post1.setAccount(acc);
-		post1.setFullName(new FullName("John", "Smith"));
-		post1.setUserImageUrl("assets/images/Profile-Placeholder.png");
-		post1.setPostType("Post");
-		post1.setScript("This is my second post about ...");
-		post1.setImageUrl(null);
-		post1.setRatings(47);
-		post1.setComments(6);
-		post1.setShares(9);
+		post.setDate(LocalDateTime.now());
+
+//		Post post1 = new Post();
+//		post1.setAccount(acc);
+//		post1.setFullName(new FullName("John", "Smith"));
+//		post1.setUserImageUrl("assets/images/Profile-Placeholder.png");
+//		post1.setPostType("Post");
+//		post1.setScript("This is my second post about ...");
+//		post1.setImageUrl(null);
+//		post1.setRatings(47);
+//		post1.setComments(6);
+//		post1.setShares(9);
 
 		postService.addPost(post);
-		postService.addPost(post1);
+//		postService.addPost(post1);
 
 	}
 

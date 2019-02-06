@@ -3,11 +3,11 @@ import {Post} from "../models/post-models/Post";
 import {FullName} from "../models/account-models/FullName";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-homepage',
+  templateUrl: './homepage.component.html',
+  styleUrls: ['./homepage.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class HomepageComponent implements OnInit {
 
   posts: Array<any>;
 
@@ -32,7 +32,8 @@ export class DashboardComponent implements OnInit {
         "assets/images/placeholder.png",
         327,
         24,
-        17
+        17,
+        "2019-02-07"
       )
     );
 
@@ -46,10 +47,10 @@ export class DashboardComponent implements OnInit {
         null,
         23,
         1,
-        0
+        0,
+        "2019-02-05"
       )
     );
 
   }
-
 }
