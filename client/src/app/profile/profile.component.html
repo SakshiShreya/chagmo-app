@@ -1,0 +1,47 @@
+
+  <div class="profile_div">
+    <div class="profile_image">
+      <img class="profile_image" src="assets/images/img_avatar2.png">
+    </div>
+    <div class="full_name">
+        <span>
+          <b>
+            {{ viewedAccountInfo?.getFullName().getFirstName() }}
+            {{ viewedAccountInfo?.getFullName().getLastName() }}
+          </b>
+        </span><br>
+      <div
+        *ngIf="!isViewedLoggedInAccount"
+        style="padding: 10px;">
+        <button (click)="onFollowButtonClick()" [ngClass]="{follow_button_background: isFollowed == true}" class="follow_button">
+          <span>{{ followedText }}<span *ngIf="isFollowed" >ed</span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="followers_info">
+    <div style="float: left;" class="follow_box">
+      <div>
+          <span>
+            {{ textFollowers }}
+          </span>
+      </div>
+      <div style="text-align: center;">
+          <span>
+            {{ profileFollowers.getFollowers()?.length }}
+          </span>
+      </div>
+    </div>
+    <div style="float: right;" class="follow_box">
+      <div>
+          <span>
+            {{ textFollowing }}
+          </span>
+      </div>
+      <div style="text-align: center;">
+          <span>
+            {{ profileFollowers.getFollowing()?.length }}
+          </span>
+      </div>
+    </div>
+  </div>

@@ -23,6 +23,7 @@ import { AuthenticationService } from "./services/authentication-service/authent
 import { TrendsComponent } from './trends/trends.component';
 import { TrendsListComponent } from './trends-list/trends-list.component';
 import { PostComponent } from './dashboard/post/post.component';
+import { ProfileComponent } from './profile/profile.component';
 
 /**
  *  App routers
@@ -71,7 +72,8 @@ const appRouters: Routes = [
     DashboardComponent,
     TrendsComponent,
     TrendsListComponent,
-    PostComponent
+    PostComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

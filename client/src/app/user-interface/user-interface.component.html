@@ -1,46 +1,13 @@
 <div style="text-align: center;" >
   <div class="main_div">
-    <div class="profile_div">
-      <div class="profile_image">
-        <img class="profile_image" src="assets/images/img_avatar2.png">
-      </div>
-      <div class="full_name">
-        <span>
-          <b>
-            {{ fullName?.getFirstName() }}
-            {{ fullName?.getLastName() }}
-          </b>
-        </span>
-      </div>
-    </div>
-    <div class="followers_info">
-      <div style="float: left;" class="follow_box">
-        <div>
-          <span>
-            {{ textFollowers }}
-          </span>
-        </div>
-        <div style="text-align: center;">
-          <span>
-            {{ followers?.length }}
-          </span>
-        </div>
-      </div>
-      <div style="float: right;" class="follow_box">
-        <div>
-          <span>
-            {{ textFollowing }}
-          </span>
-        </div>
-        <div style="text-align: center;">
-          <span>
-            {{ following?.length }}
-          </span>
-        </div>
-      </div>
-    </div>
+    <app-profile
+      [viewedAccountInfo]="viewedAccountInfo"
+      [profileFollowers]="profileFollowers"
+      [isViewedLoggedInAccount]="isViewedLoggedInAccount"
+      [isFollowed]="isFollowingViewedAccount">
+    </app-profile>
   </div>
-  <br>
+  <br/>
 
   <h3>Posts</h3>
   <app-post *ngFor="let post of posts" [post]="post" ></app-post>

@@ -1,21 +1,32 @@
 package com.app.demo.entities.accountEntities;
 
-import com.app.demo.entities.accountEntities.Account;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Follower {
 
     @Id
-    @Column(name="followerUsername")
+    @NotNull
+    @GeneratedValue
+    @Column(name = "id", nullable = false, unique = true)
+    private Long id;
+
+    @NotNull
+    @Column(name = "followerUsername")
     private String followerUsername;
 
+    @NotNull
     @ManyToOne
     private Account account;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getFollowerUsername() {
         return followerUsername;
@@ -36,7 +47,7 @@ public class Follower {
     @Override
     public String toString() {
         return "Follower{" +
-                "followerUsername='" + followerUsername + '\'' +
+                ", followerUsername='" + followerUsername + '\'' +
                 ", account=" + account +
                 '}';
     }
