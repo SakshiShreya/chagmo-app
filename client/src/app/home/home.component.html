@@ -1,6 +1,9 @@
 <div class="content">
   <div class="center-align logo">OUR_LOGO</div>
-  <div class="center-align"><h1>Log in</h1></div>
+  <div class="center-align header">
+    <div class="sign-in">SIGN IN</div>
+    <div class="sign-up"><a href="/sign-up">SIGN UP</a></div>
+  </div>
   <div class="main-container">
     <div class="left-side">
       <!--Don't touch it. This div is for the background-->
@@ -8,7 +11,7 @@
     <div class="right-side">
       <form #accountForm="ngForm" (ngSubmit)="logIn(accountForm.value)">
         <div class="form-group">
-          <label for="gmail">Email Id</label>
+          <!-- <label for="gmail">Email Id</label> -->
           <input
             type="email"
             id="gmail"
@@ -17,10 +20,11 @@
             class="form-control"
             required
             #gmailControl="ngModel"
+            placeholder="Email"
           />
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
+          <!-- <label for="password">Password</label> -->
           <input
             type="password"
             id="password"
@@ -29,6 +33,7 @@
             class="form-control"
             required
             #passwordControl="ngModel"
+            placeholder="Password"
           />
         </div>
         <div
@@ -51,10 +56,10 @@
           </div>
         </div>
         <div *ngIf="noSuchEmail" class="alert">{{errorMsg}}</div>
-        <button class="submit">Log in</button>
-        <p class="small">
+        <button class="submit">SIGN IN</button>
+        <!-- <p class="small">
           Don't have an account? <a href="/sign-up">Sign Up</a>
-        </p>
+        </p> -->
       </form>
     </div>
   </div>

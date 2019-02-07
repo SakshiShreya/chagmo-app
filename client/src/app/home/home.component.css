@@ -2,17 +2,53 @@ label {
   display: block;
 }
 
-.logo {
-  margin: 2rem;
-  font-size: 2rem;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .content {
-  margin: 0 10%;
+  background: #6C77E4;
+  margin: 0;
+  padding: 5vh 10vw;
+  height: 100vh;
+}
+
+.logo {
+  margin: 2rem;
+  font-size: 1.5rem;
+  color: rgba(255,255,255,0.7);
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.sign-in, .sign-up {
+  padding: 1em;
+  width: 45%;
+  font-size: 0.9em;
+  color: white;
+}
+
+.sign-in {
+  border-bottom: 3px solid #FFB700;
+}
+
+.sign-up {
+  color: #FFFFFF55;
+  border-bottom: 3px solid #FFFFFF33;
+  transition-duration: 200ms;
+}
+.sign-up:hover {
+  color: #FFFFFFDD;
+  border-bottom: 3px solid #FFFFFFDD;
 }
 
 .main-container {
   display: flex;
+  margin-top: 5vh;
 }
 
 .left-side {
@@ -26,29 +62,39 @@ label {
 input {
   outline: none;
   width: 100%;
-  padding: 0.5rem 0;
-  border: transparent;
-  border-bottom: 2px solid lightgray;
+  padding: 1rem 1rem;
+  border-radius: 8px;
+  border: none;
   margin: 0.2rem 0 0.5rem;
   transition: 200ms;
+  background-color: #FFFFFF33;
+  font-weight: bold;
 }
 
-input:hover {
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgba(255,255,255,0.8);
+  opacity: 1; /* Firefox */
+}
+
+/* input:hover {
   border-bottom: 2px solid gray;
 }
 
 input:focus {
   border-bottom: 2px solid #fbc02d;
-}
+} */
 
 .submit {
-  background: #fbc02d;
-  border: 1px solid #f9a825;
-  padding: 0.5rem;
+  background: #FFB700;
+  border: none;
+  border-radius: 8px;
+  padding: 1.2rem;
   width: 100%;
   margin: 0.5rem 0 0.2rem;
-  box-shadow: 2px 2px 5px lightgray;
   transition: 200ms;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: rgba(0,0,0,0.7);
 }
 
 .submit:focus,
@@ -72,6 +118,14 @@ input:focus {
 }
 
 @media (max-width: 720px) {
+  .content {
+    background: #6C77E4;
+    margin: 0;
+    padding: 5vh 10vw;
+    height: 100vh;
+  }
+
+
   .main-container {
     display: block;
   }
