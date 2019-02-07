@@ -25,6 +25,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { StarterComponent } from './starter/starter.component';
 import { UserpageComponent } from './userpage/userpage.component';
+import { PostFormComponent } from './post-form/post-form.component';
 
 const appRouters: Routes = [
   {
@@ -72,7 +73,8 @@ const appRouters: Routes = [
     TrendsComponent,
     TrendsListComponent,
     PostComponent,
-    ProfileComponent
+    ProfileComponent,
+    PostFormComponent
   ],
   imports: [
     BrowserModule,
