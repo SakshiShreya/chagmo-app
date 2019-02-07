@@ -16,7 +16,7 @@ export class AccountComponent implements OnInit {
   private isLoggedInAccount: boolean = false;
   private loggedInAccount: Account;
 
-  public postWindowOpened = false;
+  postWindowOpened = false;
 
   constructor(private router: Router,
               private accountService: AccountService,
@@ -43,16 +43,11 @@ export class AccountComponent implements OnInit {
   }
 
   moveToTrendsComponent(){
-    console.log("Got there");
     this.router.navigate(['trends']);
   }
 
   openOrClosePostWindow(){
-    if(this.postWindowOpened){
-      this.postWindowOpened = false;
-    }else {
-      this.postWindowOpened = true;
-    }
+    this.postWindowOpened = !this.postWindowOpened;
   }
 
   logOut(){
