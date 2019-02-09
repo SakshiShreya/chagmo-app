@@ -1,0 +1,51 @@
+.profile_div {
+  width: 100%;
+  /*height: 10%;*/
+  /*background: #a8a8a8;*/
+}
+
+.profile_image{
+  float: left;
+}
+
+.profile_image img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+}
+
+.full_name {
+  float: left;
+  font-size: 23px;
+  padding: 10px;
+}
+
+.followers_info {
+  width: 30%;
+  /*background-color: violet;*/
+  float: right;
+  height: 10%;
+  padding: 13px;
+  font-size: 18px;
+}
+
+.follow_box {
+  width: 50%;
+}
+
+.follow_button {
+  width: 100px;
+  height: 30px;
+  border-radius: 15px;
+  outline: none;
+  border: solid 1px dodgerblue;
+  font-size: 11px;
+}
+
+.follow_button_background {
+  background-color: dodgerblue;
+}
+
+.follow_button:hover {
+  background: dodgerblue;
+}

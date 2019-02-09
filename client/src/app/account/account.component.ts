@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Account } from "../models/account-models/Account";
 import { Router } from '@angular/router';
-import { AccountService } from '../account-service/account.service';
-import { LocalStorageService } from '../local-storage/local-storage.service';
+import { AccountService } from '../services/account-service/account.service';
+import { PostService } from "../services/post-service/post.service";
+import { SubjectService } from "../services/subject-service/subject.service";
+import { AuthenticationService } from "../services/authentication-service/authentication.service";
 
 @Component({
   selector: 'app-account',
@@ -10,55 +13,45 @@ import { LocalStorageService } from '../local-storage/local-storage.service';
 })
 export class AccountComponent implements OnInit {
 
-  private loggedInAccount: boolean  = false;
-  private loggedInAccountInfo: any;
+  private isLoggedInAccount: boolean = false;
+  private loggedInAccount: Account;
+
+  postWindowOpened = false;
 
   constructor(private router: Router,
               private accountService: AccountService,
-              private localStorage: LocalStorageService) { }
+              private postService: PostService,
+              private subjectService: SubjectService,
+              private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    if(this.loggedIn()){
+    if(this.authenticationService.isLoggedIn()){
       console.log("You are logged in");
-      this.setLoggedAccountInfo(this.localStorage.getLoggedAccountGmail());
+      this.isLoggedInAccount = true;
+      this.loggedInAccount = this.authenticationService.getLoggedInAccount();
     }else {
       this.router.navigate(['/no-account']);
     }
   }
 
-  /**
-   * I have this two methods here becaouse we may 
-   * add some conditions and it not directly from html file
-   */
-  moveToHome(){
-    this.router.navigate(['dashboard']);
+  moveToDashboardComponent(){
+    this.router.navigate(['']);
   }
 
-  moveToAccount(){
-    this.router.navigate([this.loggedInAccountInfo.gmail]);
+  moveToAccountComponent(){
+    this.router.navigate([this.loggedInAccount.getUsername()]);
   }
 
-  /**
-   * 
-   */
+  moveToTrendsComponent(){
+    this.router.navigate(['trends']);
+  }
+
+  openOrClosePostWindow(){
+    this.postWindowOpened = !this.postWindowOpened;
+  }
 
   logOut(){
-    this.localStorage.removeAll();
-    this.router.navigate(['/']);
-  }
-
-  setLoggedAccountInfo(accountGmail){
-    this.accountService.getByGmail(accountGmail).subscribe(
-      accountInfo => {
-        this.loggedInAccountInfo = accountInfo;
-      },
-      error => console.log(error)
-    )
-  }
-
-  loggedIn(){
-    this.loggedInAccount = this.localStorage.loggedIn();
-    return this.loggedInAccount;
+    this.authenticationService.tryLogout();
   }
 
 }

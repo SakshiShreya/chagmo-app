@@ -1,1 +1,17 @@
-@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Varela Round', sans-serif;
+  color: #333;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.center-align {
+  text-align: center;
+}

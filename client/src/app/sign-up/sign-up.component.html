@@ -1,27 +1,130 @@
-<div class="text-center m-2" >
-  <h1>Sing up</h1>
-</div>
+<div class="content">
+  <div class="center-align logo">OUR_LOGO</div>
+  <div class="center-align header">
+    <div class="sign-in"><a routerLink="/">SIGN IN</a></div>
+    <div class="sign-up">SIGN UP</div>
+  </div>
+  <div class="main-container">
+    <div class="left-side">
+      <!--Don't touch it. This div is for the background-->
+    </div>
+    <div class="right-side">
+      <form #accountForm="ngForm" (ngSubmit)="addAccount(accountForm.value)">
+        <div class="form-groups">
+          <input
+            type="email"
+            id="gmail"
+            ngModel
+            name="gmail"
+            class="form-control"
+            required
+            #gmailControl="ngModel"
+            placeholder="john.doe@email.com"
+          />
+        </div>
+        <div class="form-groups">
+          <!-- <label for="username" class="m-2">Username</label> -->
+          <input
+            type="text"
+            id="username"
+            ngModel
+            name="username"
+            class="form-control"
+            placeholder="John Doe"
+          />
+        </div>
+        <div class="form-groups">
+          <!-- <label for="first_name" class="m-2">First Name</label> -->
+          <input
+            type="text"
+            id="first_name"
+            ngModel
+            name="first_name"
+            class="form-control"
+            placeholder="John"
+          />
+        </div>
+        <div class="form-groups">
+          <!-- <label for="last_name" class="m-2">Last Name</label> -->
+          <input
+            type="text"
+            id="last_name"
+            ngModel
+            name="last_name"
+            class="form-control"
+            placeholder="Doe"
+          />
+        </div>
+        <div class="form-groups">
+          <!-- <label for="password" class="m-2">Password</label> -->
+          <input
+            type="password"
+            id="password"
+            [(ngModel)]="password"
+            name="password"
+            class="form-control"
+            required
+            #passwordControl="ngModel"
+            placeholder="Password"
+          />
+        </div>
+        <div class="form-groups">
+          <!-- <label for="re-password" class="m-2">Confirm password</label> -->
+          <input
+            type="password"
+            id="re-password"
+            ngModel
+            name="re-password"
+            class="form-control"
+            required
+            #rePasswordControl="ngModel"
+            placeholder="Retype-Password"
+          />
+        </div>
+        <!-- If email is invalid then show this line -->
+        <div
+          *ngIf="
+            gmailControl.invalid && (gmailControl.dirty || gmailControl.touched)
+          "
+          class="alert"
+        >
+          <div *ngIf="gmailControl.errors.required">Email Id is required.</div>
+        </div>
+        <!-- If password is invalid then show this line -->
+        <div
+          *ngIf="
+            passwordControl.invalid &&
+            (passwordControl.dirty || passwordControl.touched)
+          "
+          class="alert"
+        >
+          <div *ngIf="passwordControl.errors.required">
+            Password is required.
+          </div>
+        </div>
+        <!-- jkds -->
+        <div
+          *ngIf="
+            rePasswordControl.invalid &&
+            (rePasswordControl.dirty || rePasswordControl.touched)
+          "
+          class="alert"
+        >
+          <div>Retype password is required.</div>
+        </div>
+        <div
+          *ngIf="
+            rePasswordControl.touched &&
+            passwordControl.value != rePasswordControl.value
+          "
+          class="alert"
+        >
+          <div>Passwords should be same.</div>
+        </div>
 
-<form #accountForm="ngForm" (ngSubmit)="addAccount(accountForm.value)">
-    <div class="form-groups" >
-        <label for="gmail" class="m-2">Gmail</label>
-        <input id="gmail" ngModel name="gmail" class="form-control" />
+        <button class="submit">Sign up</button>
+        <!-- <p class="small">Already have an account? <a href="/">Log In</a></p> -->
+      </form>
     </div>
-    <div class="form-groups" >
-        <label for="first_name" class="m-2">First Name</label>
-        <input id="first_name" ngModel name="first_name" class="form-control" />
-    </div>
-    <div class="form-groups" >
-        <label for="last_name" class="m-2">Last Name</label>
-        <input id="last_name" ngModel name="last_name" class="form-control" />
-    </div>
-    <div class="form-groups" >
-        <label for="password" class="m-2">Password</label>
-        <input id="password" ngModel name="password" class="form-control" />
-    </div>
-    <div class="form-groups" >
-        <label for="re-password" class="m-2">Confirm passoword</label>
-        <input id="re-password" ngModel name="re-password" class="form-control" />
-    </div>
-    <button class="btn btn-info m-2">Sign up</button>
-</form>
+  </div>
+</div>

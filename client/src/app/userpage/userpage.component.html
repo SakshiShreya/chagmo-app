@@ -1,0 +1,15 @@
+<div style="text-align: center;" >
+  <div class="main_div">
+    <app-profile
+      [viewedAccountInfo]="viewedAccountInfo"
+      [profileFollowers]="profileFollowers"
+      [isViewedLoggedInAccount]="isViewedLoggedInAccount"
+      [isFollowed]="isFollowingViewedAccount">
+    </app-profile>
+  </div>
+  <br/>
+
+  <h3>Posts</h3>
+  <app-post *ngFor="let post of posts" [post]="post" ></app-post>
+
+</div>
