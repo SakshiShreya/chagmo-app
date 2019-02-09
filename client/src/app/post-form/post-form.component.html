@@ -1,0 +1,30 @@
+<div class="post_box" >
+  <form #postForm="ngForm" (ngSubmit)="addPost(postForm.value)">
+    <div class="post_form_label">
+      <b><span>Post</span></b>
+    </div>
+    <div class="input_group">
+      <div class="input_subjects">
+        <input ngModel name="subjects" id="subjects" placeholder="Subjects"/>
+      </div>
+      <div class="input_script">
+        <input ngModel name="script" id="script" placeholder="Script" />
+      </div>
+      <div class="input_file">
+        <button class="upload_button" >
+          <img src="assets/images/icons/upload-image.svg" />
+          <br>
+          <b>
+            <span>
+              IMAGE UPLOAD
+            </span>
+          </b>
+        </button>
+        <input (change)="onImageChange($event)" type="file" >
+      </div>
+    </div>
+    <div class="submit_button" >
+      <button type="submit" >Post</button>
+    </div>
+  </form>
+</div>

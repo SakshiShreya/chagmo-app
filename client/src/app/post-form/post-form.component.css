@@ -1,0 +1,106 @@
+.post_box {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 80%;
+  max-width: 650px;
+  min-width: 350px;
+  border-radius: 12px;
+  background: cornflowerblue;
+}
+
+.post_form_label {
+  text-align: center;
+  font-size: 19px;
+  padding: 20px;
+}
+
+.input_group {
+  text-align: center;
+  padding: 10px;
+}
+
+.input_script {
+  padding: 10px;
+}
+
+.input_subjects {
+  padding: 10px;
+}
+
+.input_subjects input {
+  width: 85%;
+  height: 40px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  font-size: 17px;
+  padding: 15px;
+}
+
+.input_script input {
+  width: 85%;
+  height: 100px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  font-size: 17px;
+  padding: 15px;
+}
+
+.input_file {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  padding: 15px;
+}
+
+.input_file input[type=file] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  width: 132px;
+  height: 100px;
+}
+
+.upload_button {
+  width: 132px;
+  height: 100px;
+  border-radius: 6px;
+  background-color: #47D178;
+}
+
+.upload_button img {
+  width: 40%;
+  height: 40%;
+}
+
+.upload_button span {
+  color: white;
+  font-size: 10px;
+}
+
+.submit_button {
+  text-align: center;
+  padding: 50px;
+}
+
+.submit_button button {
+  width: 90px;
+  height: 40px;
+  border-radius: 18px;
+  outline: none;
+  border: none;
+  background-color: #007FFF;
+  color: #FFFFFF;
+}
+
+.submit_button :hover {
+  background-color: #224C98;
+}
+
+.submit_button :active {
+  background-color: #4666FF;
+}

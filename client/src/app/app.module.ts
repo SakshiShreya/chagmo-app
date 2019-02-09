@@ -25,6 +25,13 @@ import { ProfileComponent } from './profile/profile.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { StarterComponent } from './starter/starter.component';
 import { UserpageComponent } from './userpage/userpage.component';
+import { PostFormComponent } from './post-form/post-form.component';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import {environment} from "../environments/environment";
+import {FollowerService} from "./services/follower-service/follower.service";
 
 const appRouters: Routes = [
   {
@@ -72,7 +79,8 @@ const appRouters: Routes = [
     TrendsComponent,
     TrendsListComponent,
     PostComponent,
-    ProfileComponent
+    ProfileComponent,
+    PostFormComponent
   ],
   imports: [
     BrowserModule,
@@ -82,13 +90,17 @@ const appRouters: Routes = [
     FormsModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireStorageModule
   ],
   providers: [
     AccountService,
     PostService,
     SubjectService,
-    AuthenticationService
+    AuthenticationService,
+    FollowerService
   ],
   bootstrap: [AppComponent]
 })
