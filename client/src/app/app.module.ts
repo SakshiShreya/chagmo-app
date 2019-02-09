@@ -27,6 +27,12 @@ import { StarterComponent } from './starter/starter.component';
 import { UserpageComponent } from './userpage/userpage.component';
 import { PostFormComponent } from './post-form/post-form.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import {environment} from "../environments/environment";
+import {FollowerService} from "./services/follower-service/follower.service";
+
 const appRouters: Routes = [
   {
     path: "sign-up",
@@ -84,13 +90,17 @@ const appRouters: Routes = [
     FormsModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireStorageModule
   ],
   providers: [
     AccountService,
     PostService,
     SubjectService,
-    AuthenticationService
+    AuthenticationService,
+    FollowerService
   ],
   bootstrap: [AppComponent]
 })
