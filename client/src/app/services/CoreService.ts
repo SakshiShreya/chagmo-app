@@ -17,7 +17,6 @@ export class CoreService {
     this.API = value;
   }
 
-
   static getHttpHeader(): HttpHeaders {
     return this.httpHeader;
   }

@@ -80,9 +80,6 @@ public class DemoApplication {
 
 		Follower follower1 = new Follower();
 		follower1.setFollowerUsername(acc.getUsername());
-  uploadImage(file: any){
-    this.task = this.ref.put(file);
-  }
 		follower1.setAccount(tomAcc);
 
 		followerService.add(follower1);

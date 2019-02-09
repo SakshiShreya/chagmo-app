@@ -32,6 +32,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import {environment} from "../environments/environment";
 import {FollowerService} from "./services/follower-service/follower.service";
+import {ImageService} from "./services/image-service/image.service";
 
 const appRouters: Routes = [
   {
@@ -100,7 +101,8 @@ const appRouters: Routes = [
     PostService,
     SubjectService,
     AuthenticationService,
-    FollowerService
+    FollowerService,
+    ImageService
   ],
   bootstrap: [AppComponent]
 })
