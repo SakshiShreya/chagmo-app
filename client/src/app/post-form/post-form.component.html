@@ -1,14 +1,14 @@
 <div class="post_box" >
-  <form #postForm="ngForm" (ngSubmit)="post(postForm.value)">
+  <form #postForm="ngForm" (ngSubmit)="addPost(postForm.value)">
     <div class="post_form_label">
       <b><span>Post</span></b>
     </div>
     <div class="input_group">
       <div class="input_subjects">
-        <input id="subjects" placeholder="Subjects"/>
+        <input ngModel name="subjects" id="subjects" placeholder="Subjects"/>
       </div>
       <div class="input_script">
-        <input id="script" placeholder="Script" />
+        <input ngModel name="script" id="script" placeholder="Script" />
       </div>
       <div class="input_file">
         <button class="upload_button" >
@@ -20,8 +20,11 @@
             </span>
           </b>
         </button>
-        <input type="file" />
+        <input (change)="onImageChange($event)" type="file" >
       </div>
+    </div>
+    <div class="submit_button" >
+      <button type="submit" >Post</button>
     </div>
   </form>
 </div>

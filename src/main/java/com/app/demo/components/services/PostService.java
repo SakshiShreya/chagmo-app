@@ -1,5 +1,6 @@
 package com.app.demo.components.services;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -23,19 +24,20 @@ public class PostService{
     @Autowired
     private SubjectRepository subjectRepo;
 
-    public Collection<Post> getAll(){
+    public Collection<Post> getAll() {
         return postRepo.findAll();
     }
 
-    public Optional<Post> getById(int id){
+    public Optional<Post> getById(int id) {
         return postRepo.findById(Long.valueOf(id));
     }
 
-    public Collection<Post> getByAccountUsername(String username){
+    public Collection<Post> getByAccountUsername(String username) {
         return postRepo.findByAccountUsername(username);
     }
 
-    public Post addPost(Post post){
+    public Post addPost(Post post) {
+        post.setDate(LocalDateTime.now());
         return postRepo.save(post);
     }
 
