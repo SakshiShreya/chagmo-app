@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {Post} from "../models/post-models/Post";
 import {AuthenticationService} from "../services/authentication-service/authentication.service";
 import {PostService} from "../services/post-service/post.service";
-import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import {ImageService} from "../services/image-service/image.service";
 
 @Component({
@@ -17,7 +16,6 @@ export class PostFormComponent implements OnInit {
 
   constructor(private postService: PostService,
               private authenticationService: AuthenticationService,
-              private storage: AngularFireStorage,
               private imageService: ImageService) { }
 
   ngOnInit() {
