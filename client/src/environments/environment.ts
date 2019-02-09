@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyD-Dosu3FF1Ulke-aXqFXPQj8yBtK1u0KI",
-    authDomain: "chagmo-demo-d126e.firebaseapp.com",
-    databaseURL: "https://chagmo-demo-d126e.firebaseio.com",
-    projectId: "chagmo-demo-d126e",
-    storageBucket: "chagmo-demo-d126e.appspot.com",
-    messagingSenderId: "60185626932"
+    apiKey: "AIzaSyBFuj2q7_9EQ3S4Jsn_BtXWwU-puAoF53s",
+    authDomain: "web-app-demo-c7686.firebaseapp.com",
+    databaseURL: "https://web-app-demo-c7686.firebaseio.com",
+    projectId: "web-app-demo-c7686",
+    storageBucket: "web-app-demo-c7686.appspot.com",
+    messagingSenderId: "629539930480"
   }
 };
 
