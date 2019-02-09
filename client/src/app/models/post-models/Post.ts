@@ -1,9 +1,10 @@
 import {FullName} from "../account-models/FullName";
+import {Account} from "../account-models/Account";
 
 export class Post {
 
   constructor(private fullName: FullName,
-              private username: string,
+              private account: Account,
               private userImageUrl: string,
               private postType: string,
               private script: string,
@@ -21,12 +22,12 @@ export class Post {
     this.fullName = value;
   }
 
-  getUsername(): string {
-    return this.username;
+  getAccount(): Account {
+    return this.account;
   }
 
-  setUsername(value: string) {
-    this.username = value;
+  setAccount(value: Account) {
+    this.account = value;
   }
 
   getUserImageUrl(): string {
@@ -94,13 +95,10 @@ export class Post {
   }
 
   static anyToObject(any: any){
-    let fullName = new FullName(
-      any.fullName.firstName,
-      any.fullName.lastName,
-    );
+    let fullName = FullName.anyToObject(any.fullName);
     return new Post(
       fullName,
-      any.username,
+      any.account,
       any.userImageUrl,
       any.postType,
       any.script,

@@ -16,7 +16,7 @@ export class AccountComponent implements OnInit {
   private isLoggedInAccount: boolean = false;
   private loggedInAccount: Account;
 
-  postWindowOpened = true;
+  postWindowOpened = false;
 
   constructor(private router: Router,
               private accountService: AccountService,

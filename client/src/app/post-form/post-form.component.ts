@@ -3,6 +3,7 @@ import {Post} from "../models/post-models/Post";
 import {AuthenticationService} from "../services/authentication-service/authentication.service";
 import {PostService} from "../services/post-service/post.service";
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
+import {ImageService} from "../services/image-service/image.service";
 
 @Component({
   selector: 'app-post-form',
@@ -14,26 +15,56 @@ export class PostFormComponent implements OnInit {
   post: Post = null;
   image: File = null;
 
-  ref: AngularFireStorageReference;
-  task: AngularFireUploadTask;
-
-  constructor(private storage: AngularFireStorage) { }
+  constructor(private postService: PostService,
+              private authenticationService: AuthenticationService,
+              private storage: AngularFireStorage,
+              private imageService: ImageService) { }
 
   ngOnInit() {
   }
 
   onImageChange(event){
-    const randomId = Math.random().toString(36).substring(2);
-    this.ref = this.storage.ref(randomId);
-    this.task = this.ref.put(event.target.files[0]);
+    this.image = event.target.files[0];
   }
 
-  addPost(event: any){
-    // console.log(this.post);
-    // this.postService.save(this.post).subscribe(
-    //   res => console.log(res),
-    //   err => console.log(err)
-    // )
+  addPost(postForm: any) {
+    this.post = new Post(
+      this.authenticationService.getLoggedInAccount().getFullName(),
+      this.authenticationService.getLoggedInAccount(),
+      "assets/images/Profile-Placeholder.png",
+      "Image",
+      postForm.script,
+      null,
+      0,
+      0,
+      0,
+      null,
+    );
+    if (this.image != null) {
+      this.imageService.uploadImage(this.image).then(
+        a => {
+          if(a.state === "success"){
+            console.log("image is successfully uploaded");
+            this.imageService.getReference().getDownloadURL().subscribe(
+              url => {
+                console.log("post has successfully been made");
+                this.post.setImageUrl(url);
+                this.savePost();
+              }
+            )
+          }
+        }
+      );
+    }else {
+      this.savePost();
+    }
+  }
+
+  savePost(){
+    this.postService.save(this.post).subscribe(
+      res => console.log(res),
+      err => console.log(err)
+    )
   }
 
 }
